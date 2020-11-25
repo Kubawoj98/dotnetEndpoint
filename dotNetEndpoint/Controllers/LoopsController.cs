@@ -32,9 +32,10 @@ namespace dotNetEndpoint.Controllers
                     test = test + "secondLoop ";
                 }
             }
-    RevDeBugAPI.Snapshot.RecordSnapshot("nested_for");
+            RevDeBugAPI.Snapshot.RecordSnapshot("nested_for");
 
             return test;
         }
+
     }
 }
