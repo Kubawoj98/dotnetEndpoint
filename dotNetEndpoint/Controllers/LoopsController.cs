@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using dotNetEndpoint.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,108 @@ namespace dotNetEndpoint.Controllers
 
             return test;
         }
+        [Route("single_while")]
+        public string SingleWhile()
+        {
+            string test = "";
+            int i = 0;
+            while (i < 10)
+            {
+                test = test + "TEST" + i + " ";
+                i++;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("single_while");
 
+            return test;
+        }
+        [Route("nested_while")]
+        public string NestedWhile()
+        {
+            String test = "";
+            int i = 0;
+            while (i < 3)
+            {
+                int j = 0;
+                while (j < 3)
+                {
+                    test = test + "test" + i + j + " ";
+                    j++;
+                }
+                i++;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("nested_while");
+
+            return test;
+        }
+        [Route("do_while")]
+        public string DoWhile()
+        {
+            String test = "";
+            int i = 0;
+            do
+            {
+                test = test + "test";
+                i++;
+            } while (i < 10);
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("do_while");
+
+            return test;
+        }
+        [Route("foreach")]
+        public string Foreach()
+        {
+            String[] test = { "ONE", "TWO", "THREE", "FOUR", "FIVE" };
+            String lower = "";
+            for (int i=0;i<test.Length;i++)
+            {
+                lower = test[i].ToLower();
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("foreach");
+
+            return lower;
+        }
+        [Route("break")]
+        public string breakEndpoint()
+        {
+            string test = "";
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 4)
+                {
+                    break;
+                }
+                test += i + " ";
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("break");
+
+            return test;
+        }
+        [Route("continue")]
+        public string continueEndpoint()
+        {
+            string test = "";
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 4)
+                {
+                    continue;
+                }
+                test += i + " ";
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("continue");
+
+            return test;
+        }
+        [Route("recursion")]
+        public string recursion()
+        {
+            String test = "";
+            int result = SumClass.Sum(5);
+            test += result;
+            RevDeBugAPI.Snapshot.RecordSnapshot("recursion");
+
+            return test;
+        }
     }
 }
