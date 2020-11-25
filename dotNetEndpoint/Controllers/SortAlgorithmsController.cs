@@ -32,6 +32,36 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("quick_sort");
             return arrayValue;
         }
-
+        [Route("bubble_sort")]
+        public string bubbleSort()
+        {
+            String arrayValue = "Original array: ";
+            int[] numbers = { 14, 8, 5, 1, 5678 };
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                arrayValue += numbers[i] + " ";
+            }
+            arrayValue += "\n";
+            int tempVar;
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                for (int j = 0; j < numbers.Length - i - 1; j++)
+                {
+                    if (numbers[j] > numbers[j + 1])
+                    {
+                        tempVar = numbers[j + 1];
+                        numbers[j + 1] = numbers[j];
+                        numbers[j] = tempVar;
+                    }
+                }
+            }
+            arrayValue += "Sorted array: ";
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                arrayValue += numbers[i] + " ";
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("quick_sort");
+            return arrayValue;
+        }
     }
 }
