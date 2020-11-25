@@ -63,5 +63,23 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("quick_sort");
             return arrayValue;
         }
+        [Route("merge_sort")]
+        public string mergeSort()
+        {
+            int[] array = { 12, 1, 10, 50, 5, 15, 45 };
+            String arrayValue = "Unsorted array: ";
+            for (int i = 0; i < array.Length; i++)
+            {
+                arrayValue += array[i] + " ";
+            }
+            arrayValue += "\n Sorted array: ";
+            SortingAlgorithms.mergeSort(array, array.Length);
+            for (int i = 0; i < array.Length; ++i)
+            {
+                arrayValue += array[i] + " ";
+            };
+            RevDeBugAPI.Snapshot.RecordSnapshot("merge_sort");
+            return arrayValue;
+        }
     }
 }
