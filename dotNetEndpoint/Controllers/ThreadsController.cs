@@ -11,7 +11,7 @@ namespace dotNetEndpoint.Controllers
     public class ThreadsController : Controller 
     {
         [Route("new_thread")]
-        public string newThread()
+        public string NewThread()
         {
             string test = "";
             Thread th = Thread.CurrentThread;
@@ -20,7 +20,7 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
         [Route("child_threads")]
-        public string childThreads()
+        public string ChildThreads()
         {
             string test = "";
             ThreadStart ts = new ThreadStart(CallToChildThread);

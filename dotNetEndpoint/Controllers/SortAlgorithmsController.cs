@@ -11,11 +11,10 @@ namespace dotNetEndpoint.Controllers
     public class SortAlgorithmsController : Controller 
     {
         [Route("quick_sort")]
-        public string quickSort()
+        public string QuickSort()
         {
             string arrayValue = "Original Array: ";
             //initialize a numeric array, intArray
-            SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
             int[] intArray= { 4, -1, 5, -3 };
             int n = intArray.Length;
             for(int i=0;i<n;i++)
@@ -24,7 +23,7 @@ namespace dotNetEndpoint.Controllers
             }
             //call quick_sort routine using QuickSort object+ 
             arrayValue += "\n" +"Sorted Array";
-            SortingAlgorithms.quickSortAlgorithm(intArray, 0, n - 1);
+            SortingAlgorithms.QuickSortAlgorithm(intArray, 0, n - 1);
             for (int i = 0; i < n; i++)
             {
                 arrayValue += intArray[i] +", ";
@@ -33,7 +32,7 @@ namespace dotNetEndpoint.Controllers
             return arrayValue;
         }
         [Route("bubble_sort")]
-        public string bubbleSort()
+        public string BubbleSort()
         {
             String arrayValue = "Original array: ";
             int[] numbers = { 14, 8, 5, 1, 5678 };
@@ -64,7 +63,7 @@ namespace dotNetEndpoint.Controllers
             return arrayValue;
         }
         [Route("merge_sort")]
-        public string mergeSort()
+        public string MergeSort()
         {
             int[] array = { 12, 1, 10, 50, 5, 15, 45 };
             String arrayValue = "Unsorted array: ";
@@ -73,7 +72,7 @@ namespace dotNetEndpoint.Controllers
                 arrayValue += array[i] + " ";
             }
             arrayValue += "\n Sorted array: ";
-            SortingAlgorithms.mergeSort(array, array.Length);
+            SortingAlgorithms.MergeSort(array, array.Length);
             for (int i = 0; i < array.Length; ++i)
             {
                 arrayValue += array[i] + " ";

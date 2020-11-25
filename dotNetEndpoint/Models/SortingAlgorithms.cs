@@ -7,20 +7,20 @@ namespace dotNetEndpoint.Models
 {
     public class SortingAlgorithms
     {
-        public static void quickSortAlgorithm(int[] intArray, int low, int high)
+        public static void QuickSortAlgorithm(int[] intArray, int low, int high)
         {
             if (low < high)
             {
                 //partition the array around pi=>partitioning index and return pi
-                int pi = partition(intArray, low, high);
+                int pi = Partition(intArray, low, high);
 
                 // sort each partition recursively 
-                quickSortAlgorithm(intArray, low, pi - 1);
-                quickSortAlgorithm(intArray, pi + 1, high);
+                QuickSortAlgorithm(intArray, low, pi - 1);
+                QuickSortAlgorithm(intArray, pi + 1, high);
             }
             
         }
-        public static int partition(int[] intArray, int low, int high)
+        public static int Partition(int[] intArray, int low, int high)
         {
             int pi = intArray[high];
             int i = (low - 1); // smaller element index
@@ -44,7 +44,7 @@ namespace dotNetEndpoint.Models
 
             return i + 1;
         }
-        public static void merge(int[] left_arr, int[] right_arr, int[] arr, int left_size, int right_size)
+        public static void Merge(int[] left_arr, int[] right_arr, int[] arr, int left_size, int right_size)
         {
 
             int i = 0, l = 0, r = 0;
@@ -70,7 +70,7 @@ namespace dotNetEndpoint.Models
                 arr[i++] = right_arr[r++];
             }
         }
-        public static void mergeSort(int[] arr, int len)
+        public static void MergeSort(int[] arr, int len)
         {
             if (len < 2)
             {
@@ -96,10 +96,10 @@ namespace dotNetEndpoint.Models
                 }
             }
             // Recursively calling the function to divide the subarrays further
-            mergeSort(left_arr, mid);
-            mergeSort(right_arr, len - mid);
+            MergeSort(left_arr, mid);
+            MergeSort(right_arr, len - mid);
             // Calling the merge method on each subdivision
-            merge(left_arr, right_arr, arr, mid, len - mid);
+            Merge(left_arr, right_arr, arr, mid, len - mid);
         }
     }
 }

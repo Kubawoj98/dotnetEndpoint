@@ -34,7 +34,7 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
         [Route("abs")]
-        public string abs()
+        public string Abs()
         {
             string test = "";
             test += Math.Abs(-142.24);
