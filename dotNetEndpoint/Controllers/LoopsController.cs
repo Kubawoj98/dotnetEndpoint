@@ -30,7 +30,7 @@ namespace dotNetEndpoint.Controllers
                 test += "firstLoop ";
                 for (int j = 0; j < 3; j++)
                 {
-                    test = test + "secondLoop ";
+                    test += "secondLoop ";
                 }
             }
             RevDeBugAPI.Snapshot.RecordSnapshot("nested_for");
@@ -77,7 +77,7 @@ namespace dotNetEndpoint.Controllers
             int i = 0;
             do
             {
-                test = test + "test";
+                test += "test";
                 i++;
             } while (i < 10);
 
@@ -99,7 +99,7 @@ namespace dotNetEndpoint.Controllers
             return lower;
         }
         [Route("break")]
-        public string breakEndpoint()
+        public string BreakEndpoint()
         {
             string test = "";
             for (int i = 0; i < 10; i++)
@@ -115,7 +115,7 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
         [Route("continue")]
-        public string continueEndpoint()
+        public string ContinueEndpoint()
         {
             string test = "";
             for (int i = 0; i < 10; i++)
@@ -131,7 +131,7 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
         [Route("recursion")]
-        public string recursion()
+        public string Recursion()
         {
             String test = "";
             int result = SumClass.Sum(5);
