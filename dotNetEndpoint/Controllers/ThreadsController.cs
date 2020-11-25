@@ -10,6 +10,7 @@ namespace dotNetEndpoint.Controllers
     [Route("[controller]")]
     public class ThreadsController : Controller 
     {
+        static Thread thread1, thread2;
         [Route("new_thread")]
         public string NewThread()
         {
@@ -17,6 +18,7 @@ namespace dotNetEndpoint.Controllers
             Thread th = Thread.CurrentThread;
             th.Name = "GłównyWątek";
             test += th.Name;
+            RevDeBugAPI.Snapshot.RecordSnapshot("new_thread");
             return test;
         }
         [Route("child_threads")]
@@ -33,6 +35,23 @@ namespace dotNetEndpoint.Controllers
             // przerwanie wątku pochodnego
             test += ("Główny wątek: przerwanie wątku pochodnego");
             pochodnyWatek.Interrupt();
+            RevDeBugAPI.Snapshot.RecordSnapshot("child_threads");
+            return test;
+
+        }
+        [Route("join_threads")]
+        public string JoinThreads()
+        {
+            string test = "Wypisano w konsoli";
+            thread1 = new Thread(ThreadProc);
+            thread1.Name = "Thread1";
+            thread1.Start();
+
+            thread2 = new Thread(ThreadProc);
+            thread2.Name = "Thread2";
+            thread2.Start();
+            RevDeBugAPI.Snapshot.RecordSnapshot("join_threads");
+
             return test;
 
         }
@@ -59,6 +78,18 @@ namespace dotNetEndpoint.Controllers
                 Console.WriteLine("Nie można złapać wyjątku");
             }
 
+        }
+        private static void ThreadProc()
+        {
+            Console.WriteLine("\nCurrent thread: {0}", Thread.CurrentThread.Name);
+            if (Thread.CurrentThread.Name == "Thread1" &&
+                thread2.ThreadState != ThreadState.Unstarted)
+                thread2.Join();
+
+            Thread.Sleep(4000);
+            Console.WriteLine("\nCurrent thread: {0}", Thread.CurrentThread.Name);
+            Console.WriteLine("Thread1: {0}", thread1.ThreadState);
+            Console.WriteLine("Thread2: {0}\n", thread2.ThreadState);
         }
     }
 }

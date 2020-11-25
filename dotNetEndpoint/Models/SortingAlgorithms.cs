@@ -92,7 +92,7 @@ namespace dotNetEndpoint.Models
                 else
                 {
                     right_arr[k] = arr[i];
-                    k = k + 1;
+                    k += + 1;
                 }
             }
             // Recursively calling the function to divide the subarrays further
