@@ -7,11 +7,20 @@ namespace dotNetEndpoint.Models
 {
     public class SortingAlgorithms
     {
-        public static void quickSortAlgorithm(int []intArray,int low, int high)
+        public static void quickSortAlgorithm(int[] intArray, int low, int high)
         {
+            if (low < high)
+            {
+                //partition the array around pi=>partitioning index and return pi
+                int pi = partition(intArray, low, high);
+
+                // sort each partition recursively 
+                quickSortAlgorithm(intArray, low, pi - 1);
+                quickSortAlgorithm(intArray, pi + 1, high);
+            }
             
         }
-        public int partition(int[] intArray, int low, int high)
+        public static int partition(int[] intArray, int low, int high)
         {
             int pi = intArray[high];
             int i = (low - 1); // smaller element index
