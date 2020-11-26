@@ -100,6 +100,23 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("multidimensional_array");
             return test;
         }
-
+        [Route("arrays_filtered")]
+        public string ArraysFiltered()
+        {
+            string test = "Original Array: ";
+            int[] arr = { 40, 42, 12, 83, 75, 40, 95 };
+            foreach (int a in arr)
+            {
+                test+=a+ ", ";
+            }
+            test += "\n Filtered array: ";
+            IEnumerable<int> myQuery = arr.AsQueryable().Where((a, index) => a >= 50);
+            foreach (int res in myQuery)
+            {
+               test+=res+", ";
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("arrays_filtered");
+            return test;
+        }
     }
 }
