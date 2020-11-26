@@ -113,5 +113,25 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("get_from_value");
             return test;
         }
+        [Route("different_types")]
+        public string DifferentTypes()
+        {
+            string test = "";
+            Dictionary<string, int> person = new Dictionary<string, int>();
+            person.Add("Steven", 32);
+            person.Add("Joe", 30);
+            person.Add("Tom", 16);
+            person.Add("Brad", 24);
+            try
+            {
+                test +="Name: " +person.ElementAt(0).Key + "\nAge: " + person.ElementAt(0).Value;
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("different_types");
+            return test;
+        }
     }
 }
