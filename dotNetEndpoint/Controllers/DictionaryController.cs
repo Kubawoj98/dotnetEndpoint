@@ -133,8 +133,8 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("different_types");
             return test;
         }
-        [Route("different_types_sort")]
-        public string DifferentTypesSort()
+        [Route("different_types_sort_ascending")]
+        public string DifferentTypesSortAscending()
         {
             string test = "Original Dictionary: ";
             Dictionary<string, int> person = new Dictionary<string, int>();
@@ -150,17 +150,46 @@ namespace dotNetEndpoint.Controllers
             try
             {
                 var sortedDict = from entry in person orderby entry.Value ascending select entry;
-                for(int i=0;i<4;i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    test+="Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
+                    test += "Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
                 }
             }
             catch (Exception e)
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("different_types");
+            RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending");
             return test;
         }
-    }
+            [Route("different_types_sort_ascending_descending")]
+            public string DifferentTypesSortDescending()
+            {
+                string test = "Original Dictionary: ";
+                Dictionary<string, int> person = new Dictionary<string, int>();
+                person.Add("Steven", 32);
+                person.Add("Joe", 30);
+                person.Add("Tom", 16);
+                person.Add("Brad", 24);
+                for (int i = 0; i < person.Count; i++)
+                {
+                    test += "Name: " + person.ElementAt(i).Key + "\nAge: " + person.ElementAt(i).Value + "\n";
+                }
+                test += "\nSorted Dictionary: \n";
+                try
+                {
+                    var sortedDict = from entry in person orderby entry.Value descending select entry;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        test += "Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
+                    }
+                }
+                catch (Exception e)
+                {
+                    test += e;
+                }
+                RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending_descending");
+                return test;
+            }
+        }
 }
