@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,16 +36,22 @@ namespace dotNetEndpoint.Controllers
                     Values = ad.RouteValues
                 });
 
-                sb.Append(Environment.GetEnvironmentVariable("REVDEBUG_dotNetEndpoint")).Append(action).AppendLine().AppendLine();
-                
+                sb.Append("<html><body><a href=\"").Append(Environment.GetEnvironmentVariable("REVDEBUG_dotNetEndpoint")).Append(action).Append("\">").Append(action+"</br>").Append("</a></body></html>").AppendLine();
+
             }
 
-            return Ok(sb.ToString());
+            return new ContentResult
+            {
+                ContentType = "text/html",
+                StatusCode = (int)HttpStatusCode.OK,
+                Content = sb.ToString()
+            };
         }
         [Route("env")]
         public string GetEnv()
 
-        { string test= Environment.GetEnvironmentVariable("REVDEBUG_dotNetEndpoint");
+        {
+            string test = Environment.GetEnvironmentVariable("REVDEBUG_dotNetEndpoint");
 
             return test;
         }
