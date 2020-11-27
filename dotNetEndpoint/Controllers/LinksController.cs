@@ -47,13 +47,6 @@ namespace dotNetEndpoint.Controllers
                 Content = sb.ToString()
             };
         }
-        [Route("env")]
-        public string GetEnv()
 
-        {
-            string test = Environment.GetEnvironmentVariable("REVDEBUG_dotNetEndpoint");
-
-            return test;
-        }
     }
 }
