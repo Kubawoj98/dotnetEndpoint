@@ -1,4 +1,5 @@
 ﻿using dotNetEndpoint.Models;
+using dotNetEndpointApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class NunitController : Controller 
+    public class NunitController : Controller
     {
         [Route("assert_equal")]
         public string AssertEqual()
@@ -31,7 +32,7 @@ namespace dotNetEndpoint.Controllers
                 Assert.AreEqual(a, b);
                 test += "True";
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 test += e;
             }
@@ -156,6 +157,41 @@ namespace dotNetEndpoint.Controllers
                 test += e;
             }
             RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays_exception");
+            return test;
+        }
+        [Route("person_comparer")]
+
+        public string PersonComparer()
+        {
+            string test = "";
+            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            Person p2 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
+
+            Assert.AreSame(p1.FirstName, p2.FirstName);
+            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
+            return test;
+
+
+        }
+        [Route("person_comparer_exception")]
+
+        public string PersonComparerException()
+        {
+            string test = "";
+            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            Person p2 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
+
+            try
+            {
+                Assert.AreSame(p1, p2);
+            }
+            catch(Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
             return test;
         }
     }
