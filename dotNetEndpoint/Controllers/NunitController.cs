@@ -194,5 +194,130 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
             return test;
         }
+        [Route("person_comparer_inheritance")]
+
+        public string PersonCompareInheritance()
+        {
+            string test = "";
+            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            Employee p2 = new Employee { FirstName = "Tom", LastName = "Hamilton" };
+            Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
+
+            try
+            {
+                Assert.AreSame(p1, p2);
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
+            return test;
+        }
+        [Route("inconclusive")]
+
+        public string Inconclusive()
+        {
+            string test = "";
+
+            try
+            {
+                Assert.Inconclusive();
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive");
+            return test;
+        }
+        [Route("inconclusive_with_message")]
+
+        public string InconclusiveWithMessage()
+        {
+            string test = "";
+
+            try
+            {
+                Assert.Inconclusive("This is some nice inconclusive message");
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive_with_message");
+            return test;
+        }
+        [Route("ignore")]
+
+        public string Ignore()
+        {
+            string test = "";
+
+            try
+            {
+                Assert.Ignore();
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("ignore");
+            return test;
+        }
+
+        [Route("ignore_with_message")]
+        public string IgnoreWithMessage()
+        {
+            string test = "";
+
+            try
+            {
+                Assert.Ignore("This is some nice ignore message");
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("ignore_with_message");
+            return test;
+
+        }
+        [Route("is_instance_of_type")]
+
+        public string IsInstanceOfType()
+        {
+            string test = "";
+            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            try
+            {
+                Assert.IsInstanceOf<Person>(p1);
+                test += "p1 is type Person";
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("is_instance_of_type");
+            return test;
+        }
+        [Route("assert_is_instance_of_type")]
+
+        public string AssertIsInstanceOfType()
+        {
+            string test = "";
+            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+            try
+            {
+                Assert.That(p1, Is.InstanceOf<Person>());
+                test += "p1 is type Person";
+            }
+            catch (Exception e)
+            {
+                test += e;
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("assert_is_instance_of_type");
+            return test;
+        }
     }
 }
