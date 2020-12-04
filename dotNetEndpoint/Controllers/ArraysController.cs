@@ -89,12 +89,19 @@ namespace dotNetEndpoint.Controllers
         public string MultiDimensionalArray()
         {
             String test = "";
-            int[] number = { 32, 33, 45, 1, 4 };
-            Array.Sort(number);
-            foreach (var item in number)
+            int[,] number = new int[3, 4] {
+                {0,1,2,3 },
+                 {4,5,6,6 },
+                 {8,9,10,11 }
+            };
+            for (int i = 0; i < 3; i++)
             {
-                test += " " + item;
+                for (int j = 0; j < 4; j++)
+                {
+                   test+= string.Format("a[{0}, {1}] = {2}", i, j, number[i, j]);
+                }
             }
+
             RevDeBugAPI.Snapshot.RecordSnapshot("multidimensional_array");
             return test;
         }
@@ -150,7 +157,7 @@ namespace dotNetEndpoint.Controllers
             {
                 result += item;
             }
-            
+
             return result;
         }
     }
