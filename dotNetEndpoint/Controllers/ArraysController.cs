@@ -13,12 +13,12 @@ namespace dotNetEndpoint.Controllers
         public string OneDimensionalArray()
         {
             string test = "";
-            string[] cars = { "Volvo ", "BMW ", "Ford ", "Mazda " };
+            string[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
             int[] myNum = { 2, 4, 5, 4 };
 
             for (int i = 0; i < myNum[1]; i++)
             {
-                test += cars[i];
+                test += cars[i] + " ";
             }
             RevDeBugAPI.Snapshot.RecordSnapshot("one_dimensional_array");
             return test;
@@ -30,12 +30,12 @@ namespace dotNetEndpoint.Controllers
             string test = "";
             try
             {
-                string[] cars = { "Volvo ", "BMW ", "Ford ", "Mazda " };
+                string[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
                 int[] myNum = { 2, 4, 5, 4 };
 
                 for (int i = 0; i < 100; i++)
                 {
-                    test += cars[i];
+                    test += cars[i] + " ";
                 }
             }
             catch (Exception e)
@@ -51,7 +51,7 @@ namespace dotNetEndpoint.Controllers
         public string OneDimensionalArrayReference()
         {
             string test = "";
-            string[] cars = { "Volvo ", "BMW ", "Ford ", "Mazda " };
+            string[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
             string[] carsCopyReference = cars;
             carsCopyReference[0] = "Fiat 126p";
             test = cars[0];
@@ -62,7 +62,7 @@ namespace dotNetEndpoint.Controllers
         public string OneDimensionalArrayCopy()
         {
             string test = "";
-            string[] cars = { "Volvo ", "BMW ", "Ford ", "Mazda " };
+            string[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
             string[] carsCopy = new string[cars.Length];
             cars.CopyTo(carsCopy, 0);
             foreach (var item in carsCopy)
