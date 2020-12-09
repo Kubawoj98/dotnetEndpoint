@@ -147,7 +147,7 @@ namespace dotNetEndpoint.Controllers
             string test = "";
                 int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             test = sum(numbers)+"";
-            RevDeBugAPI.Snapshot.RecordSnapshot("jagged_array");
+            RevDeBugAPI.Snapshot.RecordSnapshot("array_as_parameter");
             return test;
         }
         public double sum(int[] arrayOfNumbers)
