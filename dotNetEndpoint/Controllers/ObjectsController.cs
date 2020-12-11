@@ -17,11 +17,11 @@ namespace dotNetEndpoint.Controllers
             people.Add(new Person { FirstName = "Conor", LastName = "McGregor" });
         }
         Person person = new Person { FirstName = "John", LastName = "Doe" };
-        [Route("object")]
+        [Route("object_definition")]
         public string Get()
         {
             return person.FirstName + " "+ person.LastName;
-            RevDeBugAPI.Snapshot.RecordSnapshot("object");
+            RevDeBugAPI.Snapshot.RecordSnapshot("object_definition");
         }
         [Route("copy_constructor")]
         public string GetCopyConstructor()
