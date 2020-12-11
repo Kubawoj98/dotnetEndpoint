@@ -23,6 +23,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test = "You can't divide by zero! ";
             }
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
             return test;
         }
         [Route("try_catch_appropriate_exception")]
@@ -42,6 +43,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test = "You can't divide by zero! ";
             }
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_appropriate_exception");
             return test;
         }
         [Route("new_exception_class")]
@@ -57,8 +59,8 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e.Message;
             }
-             
 
+            RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
             return test;
         }
     }
