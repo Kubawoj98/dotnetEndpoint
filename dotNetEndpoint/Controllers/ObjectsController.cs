@@ -20,8 +20,9 @@ namespace dotNetEndpoint.Controllers
         [Route("object_definition")]
         public string Get()
         {
-            return person.FirstName + " "+ person.LastName;
             RevDeBugAPI.Snapshot.RecordSnapshot("object_definition");
+            return person.FirstName + " "+ person.LastName;
+            
         }
         [Route("copy_constructor")]
         public string GetCopyConstructor()
