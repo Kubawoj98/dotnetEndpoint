@@ -191,7 +191,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
+            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_exception");
             return test;
         }
         [Route("person_comparer_inheritance")]
@@ -211,7 +211,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
+            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_inheritance");
             return test;
         }
         [Route("inconclusive")]
