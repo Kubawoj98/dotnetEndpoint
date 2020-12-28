@@ -162,7 +162,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending");
             return test;
         }
-            [Route("different_types_sort_ascending_descending")]
+            [Route("different_types_sort_descending")]
             public string DifferentTypesSortDescending()
             {
                 string test = "Original Dictionary: ";
@@ -188,7 +188,7 @@ namespace dotNetEndpoint.Controllers
                 {
                     test += e;
                 }
-                RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending_descending");
+                RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_descending");
                 return test;
             }
         }
