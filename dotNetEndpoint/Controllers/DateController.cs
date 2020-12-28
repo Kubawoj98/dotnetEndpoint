@@ -16,8 +16,8 @@ namespace dotNetEndpoint.Controllers
             string test = "";
             DateTime dateTime = DateTime.Now;
             test += dateTime;
-            return test;
             RevDeBugAPI.Snapshot.RecordSnapshot("current_time");
+            return test;
         }
         [Route("cultural_info_date_us")]
         public string DateTimeParse()
