@@ -59,7 +59,7 @@ namespace dotNetEndpoint.Controllers
             {
                 arrayValue += numbers[i] + " ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("quick_sort");
+            RevDeBugAPI.Snapshot.RecordSnapshot("bubble_sort");
             return arrayValue;
         }
         [Route("merge_sort")]
