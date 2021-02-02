@@ -73,5 +73,62 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("log");
             return test;
         }
+        [Route("sin")]
+        public string Sin()
+        {
+            string test = "";
+            test += Math.Sin(10);
+            RevDeBugAPI.Snapshot.RecordSnapshot("sin");
+            return test;
+        }
+        [Route("cos")]
+        public string Cos()
+        {
+            string test = "";
+            test += Math.Cos(10);
+            RevDeBugAPI.Snapshot.RecordSnapshot("cos");
+            return test;
+        }
+        [Route("tan")]
+        public string Tan()
+        {
+            string test = "";
+            test += Math.Tan(10);
+            RevDeBugAPI.Snapshot.RecordSnapshot("tan");
+            return test;
+        }
+        [Route("ceiling")]
+        public string Ceiling()
+        {
+            string test = "";
+            test += Math.Ceiling(10.42113);
+            RevDeBugAPI.Snapshot.RecordSnapshot("ceiling");
+            return test;
+        }
+        [Route("exp")]
+        public string Exp()
+        {
+            string test = "";
+            test += Math.Exp(12);
+            RevDeBugAPI.Snapshot.RecordSnapshot("exp");
+            return test;
+        }
+        [Route("pow")]
+        public string Pow()
+        {
+            string test = "";
+            test += Math.Pow(12,12);
+            RevDeBugAPI.Snapshot.RecordSnapshot("pow");
+            return test;
+        }
+        [Route("copySign")]
+        public string copySign()
+        {
+            string test = "";
+            test += Math.CopySign(12, -4);
+            RevDeBugAPI.Snapshot.RecordSnapshot("copySign");
+            return test;
+        }
+
     }
 }
