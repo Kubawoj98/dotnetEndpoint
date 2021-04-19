@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RevDeBug.BuildTools" Version="5.7.20" />
+    <PackageReference Include="nunit" Version="3.13.1" />
+    <PackageReference Include="RevDeBug.Net.Compilers.Toolset" Version="6.0.14">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="RevDeBugAPM.Agent.AspNetCore" Version="6.0.14" />
   </ItemGroup>
 
 </Project>
