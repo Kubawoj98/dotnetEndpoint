@@ -129,6 +129,14 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("copySign");
             return test;
         }
+        [Route("expToString")]
+        public string ExpToString()
+        {
+            string test = "";
+            test += Math.Exp(12).ToString();
+            RevDeBugAPI.Snapshot.RecordSnapshot("expToString");
+            return test;
+        }
 
     }
 }
