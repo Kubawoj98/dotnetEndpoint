@@ -55,6 +55,75 @@ namespace dotNetEndpoint.Controllers
             return test;
 
         }
+
+        [Route("call_thread")]
+        public string CallThread()
+        {
+            string test = "";
+            ThreadStart ts1 = new ThreadStart(CallToFirstThread);
+            ThreadStart ts2 = new ThreadStart(CallToSecondThread);
+            thread1 = new Thread(ts1);
+            thread2 = new Thread(ts2);
+            thread1.Start();
+            using (var afc=System.Threading.ExecutionContext.SuppressFlow())
+            {
+                thread2.Start();
+            }
+            
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("call_thread");
+
+            return test;
+
+        }
+        public static void CallToFirstThread()
+        {
+            try
+            {
+                Console.WriteLine("Wątek pierwszy wystartował");
+                Thread.Sleep(5000);
+                var url = "http://0.0.0.0:6015/Console/console_writeline";
+                var httpClient = new HttpClient();
+                var response = httpClient.GetAsync(url);
+                Console.WriteLine("Wątek został wykonany");
+
+            }
+            catch (ThreadAbortException e)
+            {
+                Console.WriteLine("Wyjątek: ThreadAbortException");
+
+            }
+            finally
+            {
+                Console.WriteLine("Nie można złapać wyjątku");
+            }
+
+
+        }
+        public static void CallToSecondThread()
+        {
+            try
+            {
+                Console.WriteLine("Wątek pierwszy wystartował");
+                Thread.Sleep(6000);
+                var url = "http://0.0.0.0:6015/Lists/list_size";
+                var httpClient = new HttpClient();
+                var response = httpClient.GetAsync(url);
+                Console.WriteLine("Wątek został wykonany");
+
+            }
+            catch (ThreadAbortException e)
+            {
+                Console.WriteLine("Wyjątek: ThreadAbortException");
+
+            }
+            finally
+            {
+                Console.WriteLine("Nie można złapać wyjątku");
+            }
+
+
+        }
         public static void CallToChildThread()
         {
             try

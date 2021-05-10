@@ -84,5 +84,14 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("abstract_class");
             return test;
         }
+        [Route("check_objects_to_string")]
+        public string CheckObjectToString()
+        {
+            person = new Person(people[1]);
+            string test = person.ToString();
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("check_objects_to_string");
+            return test;
+        }
     }
 }
