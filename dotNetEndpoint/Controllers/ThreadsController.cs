@@ -106,7 +106,7 @@ namespace dotNetEndpoint.Controllers
             {
                 Console.WriteLine("Wątek pierwszy wystartował");
                 Thread.Sleep(6000);
-                var url = "http://51.11.241.44:6015/Lists/list_size";
+                var url = "http://0.0.0.0:6015/Lists/list_size";
                 var httpClient = new HttpClient();
                 var response = httpClient.GetAsync(url);
                 Console.WriteLine("Wątek został wykonany");
