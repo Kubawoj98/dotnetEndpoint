@@ -82,7 +82,7 @@ namespace dotNetEndpoint.Controllers
             {
                 Console.WriteLine("Wątek pierwszy wystartował");
                 Thread.Sleep(5000);
-                var url = "http://51.11.241.44:6015/Console/console_writeline";
+                var url = "http://0.0.0.0:6015/Console/console_writeline";
                 var httpClient = new HttpClient();
                 var response = httpClient.GetAsync(url);
                 Console.WriteLine("Wątek został wykonany");
