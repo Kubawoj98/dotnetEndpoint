@@ -13,7 +13,15 @@ namespace dotNetEndpoint.Controllers
         public string err()
         {
             string test = "";
-            throw new Exception();
+            try
+            {
+                throw new Exception();
+            }
+            catch(Exception e)
+            {
+                test += e;
+            }
+            
             return test;
         }
 
@@ -21,7 +29,15 @@ namespace dotNetEndpoint.Controllers
         public string err_snap()
         {
             string test = "";
-            throw new Exception();
+            try
+            {
+                throw new Exception();
+            }
+            catch(Exception e)
+            {
+                test+=e;
+            }
+
             RevDeBugAPI.Snapshot.RecordSnapshot("error_snap");
             return test;
         }
@@ -31,29 +47,32 @@ namespace dotNetEndpoint.Controllers
         {
             RevDeBugAPI.Snapshot.RecordSnapshot("error_snap");
             string test = "";
-            throw new Exception();
+            try
+            {
+                throw new Exception();
+            }
+            catch(Exception e)
+            {
+                test += e;
+            }
+            
             return test;
         }
 
         [Route("err_array")]
-        public string err_array()
+        public string err_array()  
         {
             string test = "";
             char[] alfa = { 'd', 'f' };
-            Console.WriteLine(alfa[12]);
-            return test;
-        }
-
-        [Route("err_loop_inf")]
-        public string err_loop()
-        {
-            string test = "";
-            int i = 0;
-            while (true)
+            try
             {
-                Console.WriteLine(i);
-                i++;
+                test += alfa[12];
             }
+            catch(Exception e)
+            {
+                test += e;
+            }
+                
             return test;
         }
 
@@ -66,7 +85,15 @@ namespace dotNetEndpoint.Controllers
             {
                 if (i == 999)
                 {
-                    throw new AggregateException();
+                    try
+                    {
+                        throw new AggregateException();
+                    }
+                    catch(AggregateException e)
+                    {
+                        test += e;
+                    }
+                    
                 }
             }
             return test;
@@ -77,25 +104,18 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             char[] alfa = { 'd', 'f' };
-            Console.WriteLine(alfa[12]);
+            try
+            {
+                Console.WriteLine(alfa[12]);
+            }
+            catch(Exception e)
+            {
+                test += e;
+            }
+            
             RevDeBugAPI.Snapshot.RecordSnapshot("err_array_snap");
             return test;
         }
-
-        [Route("err_loop_inf_snap")]
-        public string err_loop_snap()
-        {
-            string test = "";
-            int i = 0;
-            while (true)
-            {
-                Console.WriteLine(i);
-                i++;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("err_loop_inf_snap");
-            return test;
-        }
-
 
         [Route("err_loop_for_1000_snap")]
         public string err_loop_for_1000_snap()
@@ -105,7 +125,14 @@ namespace dotNetEndpoint.Controllers
             {
                 if (i == 999)
                 {
-                    throw new AggregateException();
+                    try
+                    {
+                        throw new AggregateException();
+                    }
+                    catch(Exception e)
+                    {
+                        test += e;
+                    }
                 }
             }
             RevDeBugAPI.Snapshot.RecordSnapshot("err_loop_for_1000_snap");
