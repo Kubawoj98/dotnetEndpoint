@@ -15,15 +15,7 @@ Or by adding nuget.config file on solution level:
 
 
 ```sh
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <!--To inherit the global NuGet package sources remove the <clear/> line below -->
-    <clear />
-    <add key="nuget" value="https://api.nuget.org/v3/index.json" />
-    <add key="rdb" value="https://nexus.revdebug.com/repository/nuget/" />
-  </packageSources>
-</configuration>
+dotnet nuget add source https://nexus.revdebug.com/repository/nuget -n rdb_nexus
 ```
 Next use the NuGet package manager to add RevDeBug dependencies by adding the following NuGet packages:
 [![Solid](https://lh4.googleusercontent.com/I7IXAA4MGWKPuWqjpEAMcLL8u136nUAfkEk8x7a3z9VEGUcI9di-ZlEVy3sgyn7urIjNPyq8VUqp9d-lSuzNMthJ81VFY6BZ11yMdZIHzlBQdthkG1BADvO60XMs3A)]
