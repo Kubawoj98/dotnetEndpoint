@@ -39,6 +39,11 @@ namespace dotNetEndpointApp.Models
         {
             this.LastName = lastName;
         }
+        public string GetUserData()
+        {
+            string test = GetFirstName() + " " + GetLastName();
+            return test;
+        }
     }
 
 }
