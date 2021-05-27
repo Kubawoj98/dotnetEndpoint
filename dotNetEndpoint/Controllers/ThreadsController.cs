@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+﻿using dotNetEndpointApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace dotNetEndpoint.Controllers
     [Route("[controller]")]
     public class ThreadsController : Controller 
     {
-        static Thread thread1, thread2;
+        static Thread thread1, thread2,thread3;
         [Route("new_thread")]
         public string NewThread()
         {
@@ -76,6 +77,33 @@ namespace dotNetEndpoint.Controllers
 
             return test;
 
+        }
+        [Route("multipleCallOfMehtod")]
+        public string multipleCallOfMehtod()
+        {
+            string test = "";
+            ThreadStart ts1 = new ThreadStart(displayUserData);
+            ThreadStart ts2 = new ThreadStart(displayUserData);
+            ThreadStart ts3 = new ThreadStart(displayUserData);
+            thread1 = new Thread(ts1);
+            thread2 = new Thread(ts2);
+            thread3 = new Thread(ts3);
+            thread1.Start();
+            thread2.Start();
+            thread3.Start();
+
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("multipleCallOfMehtod");
+
+            return test;
+
+        }
+        public static void displayUserData()
+        {
+            Person person = new Person("Tyson", "Fury");
+            Console.WriteLine(person.GetUserData());
+
+            person.GetUserData();
         }
         public static void CallToFirstThread()
         {
