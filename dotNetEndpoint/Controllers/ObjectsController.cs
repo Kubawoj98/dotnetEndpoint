@@ -93,5 +93,15 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("check_objects_to_string");
             return test;
         }
+        [Route("methods_inside_method")]
+        public string methodsInsideMethod()
+        {
+            string test = "";
+            Person person = new Person("Tyson", "Fury");
+            test += person.GetUserData();
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("methods_inside_method");
+            return test;
+        }
     }
 }
