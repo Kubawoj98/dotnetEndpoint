@@ -26,6 +26,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
             return test;
         }
+        
         [Route("try_catch_appropriate_exception")]
         public string TryCatchAppropriateException()
         {
@@ -46,6 +47,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_appropriate_exception");
             return test;
         }
+
         [Route("new_exception_class")]
         public string newExceptionsClass()
         {
@@ -64,7 +66,6 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
 
-
          [Route("string_index_out_of_bound")]
         public string StringIndexOutOfBound()
         {
@@ -73,7 +74,7 @@ namespace dotNetEndpoint.Controllers
             {
                 String a = "Payday2"; // length is 7
                 char c = a[9]; // accessing 9 th element
-            Console.WriteLine(c);
+                Console.WriteLine(c);
             }
             catch
             {
@@ -103,6 +104,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("number_format");
             return test;
         }
+
         [Route("array_index_out_of_bound")]
         public string arrayIndexOutOfBound()
         {
