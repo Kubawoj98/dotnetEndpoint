@@ -3,7 +3,7 @@
     "ServiceName": "DotnetEndpoint",
     "Namespace": "",
     "HeaderVersions": [
-      "sw6"
+      "sw8"
     ],
     "Sampling": {
       "SamplePer3Secs": -1,
