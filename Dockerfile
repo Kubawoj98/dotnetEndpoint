@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
-WORKDIR /DotnetEndpoint
+WORKDIR /dotNetEndpoint
 
 RUN apt-get install -y git
 
@@ -15,7 +15,7 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:3.1
 
-WORKDIR /DotnetEndpoint
-COPY --from=build-env /DotnetEndpoint/out .
+WORKDIR /dotNetEndpoint
+COPY --from=build-env /dotNetEndpoint/out .
 ENV ASPNETCORE_HOSTINGSTARTUPASSEMBLIES=RevDeBugAPM.Agent.AspNetCore
-ENTRYPOINT ["dotnet", "DotnetEndpoint.dll"]
+ENTRYPOINT ["dotnet", "dotNetEndpoint.dll"]
