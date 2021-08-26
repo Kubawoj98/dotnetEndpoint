@@ -25,11 +25,6 @@
       OutputFilename="$(PublishDir)\skyapm.json"
       MatchExpression="\$address"
       ReplacementText="$(RevDeBugRecordServerAddress)" />
-    <ReplaceFileText
-      InputFilename="$(PublishDir)\skyapm.json"
-      OutputFilename="$(PublishDir)\skyapm.json"
-      MatchExpression="\$port"
-      ReplacementText="$(RevDeBugApmEndpoint)" />
   </Target>
 
   <UsingTask
