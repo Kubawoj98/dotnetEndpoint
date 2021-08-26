@@ -15,14 +15,15 @@
     },
     "Transport": {
       "Interval": 3000,
-      "ProtocolVersion": "v3",
+      "ProtocolVersion": "v8",
       "QueueSize": 30000,
       "BatchSize": 3000,
       "gRPC": {
-        "Servers": "[REVDEBUG_SERVER]:[APM_PORT]",
+        "Servers": "$address:11800",
         "Timeout": 10000,
         "ConnectTimeout": 10000,
-        "ReportTimeout": 600000
+        "ReportTimeout": 600000,
+        "ForceTLS": false
       }
     }
   }
