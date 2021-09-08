@@ -26,6 +26,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
             return test;
         }
+        
         [Route("try_catch_appropriate_exception")]
         public string TryCatchAppropriateException()
         {
@@ -46,6 +47,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_appropriate_exception");
             return test;
         }
+
         [Route("new_exception_class")]
         public string newExceptionsClass()
         {
@@ -61,6 +63,65 @@ namespace dotNetEndpoint.Controllers
             }
 
             RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
+            return test;
+        }
+
+         [Route("string_index_out_of_bound")]
+        public string StringIndexOutOfBound()
+        {
+            string test = " ";
+            try
+            {
+                String a = "Payday2"; // length is 7
+                char c = a[9]; // accessing 9 th element
+                Console.WriteLine(c);
+            }
+            catch
+            {
+                test = "You ask for string out of bound";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("string_index_out_of_bound");
+            return test;
+        }
+
+        [Route("number_format")]
+        public string numberFormat()
+        {
+            string test = " ";
+            try
+            {
+                // "Kebab" is not a number
+                int num = Int32.Parse("Kebab");
+
+                Console.WriteLine(num);
+            }
+            catch
+            {
+                test = "Number format exception";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("number_format");
+            return test;
+        }
+
+        [Route("array_index_out_of_bound")]
+        public string arrayIndexOutOfBound()
+        {
+            string test = " ";
+            try
+            {
+                // "Kebab" is not a number
+                int num = Int32.Parse("Kebab");
+
+                Console.WriteLine(num);
+            }
+            catch
+            {
+                test = "You asked for  out of bound array index who";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("array_index_out_of_bound");
             return test;
         }
     }
