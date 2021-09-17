@@ -35,5 +35,38 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("console_writeline_formatted");
             return test;
         }
+        [Route("max_string_length")]
+        public string MaxStringLength()
+        {
+            string a1 = "000000000100000000010000000001000000000100000000010000000001000000000100000000010000000001000000000A000000000100000000010000000001000000000100000000010000000001000000000100000000010000000001000000000B000000000100000000010000000001000000000100000000010000000001000000000100000000010000000001000000000C";
+            string test;
+            test = "ccc" + a1;
+            Console.WriteLine(test);
+            RevDeBugAPI.Snapshot.RecordSnapshot("max_string_length");
+            return test;
+        }
+        [Route("single_quotes")]
+        public string SingleQuotes()
+        {
+            string a1 = "''";
+            string a2 = "'";
+            string a3 = "\'";
+            string test;
+            test = "justRegularString" + a1 + a2 + a3;
+            Console.WriteLine(test);
+            RevDeBugAPI.Snapshot.RecordSnapshot("single_quotes");
+            return test;
+        }
+        [Route("double_quotes")]
+        public string DoubleQuotes()
+        {
+            string a1 = "\"\"";
+            string a2 = "\"";
+            string test;
+            test = "justRegularString" + a1 + a2;
+            Console.WriteLine(test);
+            RevDeBugAPI.Snapshot.RecordSnapshot("double_quotes");
+            return test;
+        }
     }
 }
