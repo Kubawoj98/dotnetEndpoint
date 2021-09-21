@@ -1,4 +1,38 @@
-# Requirements
+# Quick start
+
+```
+./et-dotnet.sh build_em_all
+```
+
+### Note: 
+You have to provide environment variable:  
+- ```REVDEBUG_RECORD_SERVER_ADDRESS``` - IP address for record server
+
+## How to build:
+
+```
+./et-dotnet.sh build
+``` 
+
+## How to run:
+
+```
+./et-dotnet.sh start
+```
+
+## Environment variables
+You can also provide other environment variables, more informations under our docs:  
+[Gitbook C#](https://revdebug.gitbook.io/revdebug/supported-langauges/c)
+
+## How to use
+Application runs on port given below (in this case 6015). Every endpoint is listed here:
+```YOUR_IP_ADDRESS:6015/links```  
+Every endpoint listed there creates recording and it's visible on APM side. 
+
+
+# Classic pipeline
+
+## Requirements
 C# project configuration
 Configured & installed RevDebug Server
 Visual Studio 
