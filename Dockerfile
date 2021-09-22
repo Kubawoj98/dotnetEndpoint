@@ -9,6 +9,7 @@ ENV REVDEBUG_RECORD_SERVER_ADDRESS=$REVDEBUG_RECORD_SERVER_ADDRESS
 
 COPY . ./
 RUN dotnet nuget add source https://nexus.revdebug.com/repository/nuget --name rdb_nexus
+RUN dotnet nuget add source https://nexus-test.revdebug.com/repository/nuget --name rdb_nexus_test
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
