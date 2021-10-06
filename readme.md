@@ -43,9 +43,10 @@ To setup RevDeBug you will need to:
 1. Add RevDeBug dependency
 2. Configure the connection to RevDeBug Monitor
 
-# Adding RevDeBug dependency
-Add RevDeBug NuGet repository to your solution. You can do that globally in Visual Studio settings:
-[![N|Solid](https://lh6.googleusercontent.com/eOmATDn_HS1BzY4_RJoTbZZIZqdL5muJcGw8Di1zlzBe8cnFtZeZumJZW8LR_3AEfa2DvFFd6vEh367RYXpq4_Q4SYvwby1xt6ysxiIQcxlt8VsFUPMZebJV6p1tnw)]
+# Adding RevDeBug dependency  
+Add RevDeBug NuGet repository to your solution. You can do that globally in Visual Studio settings:  
+
+![N|Solid](https://lh6.googleusercontent.com/eOmATDn_HS1BzY4_RJoTbZZIZqdL5muJcGw8Di1zlzBe8cnFtZeZumJZW8LR_3AEfa2DvFFd6vEh367RYXpq4_Q4SYvwby1xt6ysxiIQcxlt8VsFUPMZebJV6p1tnw)
 
 Or by adding nuget.config file on solution level:
 
@@ -53,33 +54,19 @@ Or by adding nuget.config file on solution level:
 ```sh
 dotnet nuget add source https://nexus.revdebug.com/repository/nuget -n rdb_nexus
 ```
-Next use the NuGet package manager to add RevDeBug dependencies by adding the following NuGet packages:
-[![Solid](https://lh4.googleusercontent.com/I7IXAA4MGWKPuWqjpEAMcLL8u136nUAfkEk8x7a3z9VEGUcI9di-ZlEVy3sgyn7urIjNPyq8VUqp9d-lSuzNMthJ81VFY6BZ11yMdZIHzlBQdthkG1BADvO60XMs3A)]
+Next use the NuGet package manager to add RevDeBug dependencies by adding the following NuGet packages:  
+
+![Solid](https://lh4.googleusercontent.com/I7IXAA4MGWKPuWqjpEAMcLL8u136nUAfkEk8x7a3z9VEGUcI9di-ZlEVy3sgyn7urIjNPyq8VUqp9d-lSuzNMthJ81VFY6BZ11yMdZIHzlBQdthkG1BADvO60XMs3A)
 After searching for a RevDeBug package, select both:
 1. RevDeBug.Net.Compilers.Toolset
 2. RevDeBugAPM.Agent.AspNetCore
-[![Solid](https://lh5.googleusercontent.com/JIf681vBRDStyZaF3Vz-mhc3D5wNDVEnwfT5hic14AhXsyDGJeCZblFux2GE7AejgsfoVcU4Czb-tSFKhv_W0WtcorrQAmYYFwMCXHzU-hpV93I6-mzwvBy4Q2VXIg)]
+![Solid](https://lh5.googleusercontent.com/JIf681vBRDStyZaF3Vz-mhc3D5wNDVEnwfT5hic14AhXsyDGJeCZblFux2GE7AejgsfoVcU4Czb-tSFKhv_W0WtcorrQAmYYFwMCXHzU-hpV93I6-mzwvBy4Q2VXIg)
 
 # Configure the connection to RevDeBug Monitor
 Add Directory.Build.props file on solution level
 
-```sh
-<Project>
-  <PropertyGroup Condition="'$(RevDeBugDisableNuget)' != 'true'">
-    <RevDeBugActive>[REVDEBUG_ACTIVE]</RevDeBugActive>
-    <UseRevDeBugOnThisProject>true</UseRevDeBugOnThisProject>
-    <RevDeBugStateStorageType>[REVDEBUG_STORAGE_TYPE]</RevDeBugStateStorageType>
-    <SendToServer>[REVDEBUG_SEND_TO_SERVER]</SendToServer>
-    <RecorderAddress>[REVDEBUD_RECORDER_ADDRESS]</RecorderAddress>
-    <RecorderTCPPort>[REVDEBUD_RECORDER_TCP_PORT]</RecorderTCPPort>
-    <RevDeBugForceTLS>[REVDEBUG_FORCE_TLS]</RevDeBugForceTLS>
-    <ImportGitInfo>true</ImportGitInfo>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFrameworkIdentifier)' != '.NETFramework'">
-    <isNetCore>true</isNetCore>
-  </PropertyGroup>
-</Project>
-```
+[Directory.Build.props](Directory.Build.props)  
+
 **[REVDEBUG_SEND_TO_SERVER]**- Configure if RevDeBug will send data to server
 **[REVDEBUD_RECORDER_ADDRESS]**-Here you have to enter the IP address or hostname of the recording servers (if you are using Docker, use Ifconfig command to get an IP address)
 **[REVDEBUD_RECORDER_TCP_PORT]**- Default port to connect to RevDeBug DevOps Monitor.
