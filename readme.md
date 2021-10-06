@@ -7,6 +7,8 @@
 ### Note: 
 You have to provide environment variable:  
 - ```REVDEBUG_RECORD_SERVER_ADDRESS``` - IP address for record server
+- ```REVDEBUG_DOTNET_COMPILER_VERSION``` - RevDeBug.Net.Compilers.Toolset version
+- ```REVDEBUG_DOTNET_AGENT_VERSION```- RevDeBugAPM.Agent.AspNetCore version
 
 ## How to build:
 
