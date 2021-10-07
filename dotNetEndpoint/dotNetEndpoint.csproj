@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <!-- Adding ENV Variables directly into Version doesn't work, it has to be passed there and '$(RevDeBugCompilerVersion)' should be passed as a version. -->
     <RevDeBugCompilerVersion>$(REVDEBUG_DOTNET_COMPILER_VERSION)</RevDeBugCompilerVersion>
     <RevDeBugAgentVersion>$(REVDEBUG_DOTNET_AGENT_VERSION)</RevDeBugAgentVersion>
   </PropertyGroup>
