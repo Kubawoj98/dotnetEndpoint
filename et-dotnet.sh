@@ -2,16 +2,18 @@ set -e
 
 docker_build() {
     
-    if [ -z $REVDEBUG_RECORD_SERVER_ADDRESS ]
+    if [ -z $REVDEBUG_RECORD_SERVER_ADDRESS ] || [ -z $REVDEBUG_DOTNET_COMPILER_VERSION ] || [ -z $REVDEBUG_DOTNET_AGENT_VERSION ]
     then
         echo "Missing essential env variable, list:"
         echo "REVDEBUG_RECORD_SERVER_ADDRESS=$REVDEBUG_RECORD_SERVER_ADDRESS"
+        echo "REVDEBUG_DOTNET_COMPILER_VERSION=$REVDEBUG_DOTNET_COMPILER_VERSION"
+        echo "REVDEBUG_DOTNET_AGENT_VERSION=$REVDEBUG_DOTNET_AGENT_VERSION"
         echo "Exiting..."
         exit 1
     else 
         echo "Running build, Record Server: $REVDEBUG_RECORD_SERVER_ADDRESS"
     fi    
-    sudo docker build --pull --build-arg REVDEBUG_RECORD_SERVER_ADDRESS=$REVDEBUG_RECORD_SERVER_ADDRESS -t et-dotnet .
+    sudo docker build --pull --build-arg REVDEBUG_RECORD_SERVER_ADDRESS=$REVDEBUG_RECORD_SERVER_ADDRESS --build-arg REVDEBUG_DOTNET_COMPILER_VERSION=$REVDEBUG_DOTNET_COMPILER_VERSION --build-arg REVDEBUG_DOTNET_AGENT_VERSION=$REVDEBUG_DOTNET_AGENT_VERSION -t et-dotnet .
 
     echo "EndpointTest dotNet application container has been created and started."
 }

@@ -2,15 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <!-- Adding ENV Variables directly into Version doesn't work, it has to be passed there and '$(RevDeBugCompilerVersion)' should be passed as a version. -->
+    <RevDeBugCompilerVersion>$(REVDEBUG_DOTNET_COMPILER_VERSION)</RevDeBugCompilerVersion>
+    <RevDeBugAgentVersion>$(REVDEBUG_DOTNET_AGENT_VERSION)</RevDeBugAgentVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="nunit" Version="3.13.1" />
-    <PackageReference Include="RevDeBug.Net.Compilers.Toolset" Version="6.1.5">
+    <PackageReference Include="RevDeBug.Net.Compilers.Toolset" Version='$(RevDeBugCompilerVersion)'>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="RevDeBugAPM.Agent.AspNetCore" Version="6.1.1" />
+    <PackageReference Include="RevDeBugAPM.Agent.AspNetCore" Version="$(RevDeBugAgentVersion)" />
   </ItemGroup>
 
 </Project>
