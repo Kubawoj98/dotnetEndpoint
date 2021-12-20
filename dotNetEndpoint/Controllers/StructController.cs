@@ -48,7 +48,7 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
         [Route("conversion_request")]
-        public string structConcersionRequest()
+        public string structConversionRequest()
         {
             string test = "Conversion request";
 
