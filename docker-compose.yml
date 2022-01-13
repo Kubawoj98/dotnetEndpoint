@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  dotnet-stress-rdb-apm:
+    image: 'stressdotnet-rdb-apm-new:latest'
+    build:
+      context: ./
+      args:
+        REVDEBUG_DOTNET_COMPILER_VERSION: ${REVDEBUG_COMPILER_VERSION:-6.1.17}
+        REVDEBUG_ACTIVEARG: ${REVDEBUG_OFF:-true}
+        REVDEBUG_DOTNET_AGENT_VERSION: ${SW_AGENT_VERSION:-6.1.19}
+        SW_AGENT_ACTIVE_ARG: ${SW_AGENT_ACTIVE:-true}
+        REVDEBUG_TLSARGS: ${REVDEBUG_FORCE_TLS:-false}
+        REVDEBUG_RECORD_SERVER_ADDRESS: ${REVDEBUG_HOST:-0.0.0.0}
+    ports:
+      - '8060:80'

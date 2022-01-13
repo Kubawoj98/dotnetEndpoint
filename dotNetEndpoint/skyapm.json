@@ -1,6 +1,6 @@
 {
   "SkyWalking": {
-    "ServiceName": "DotnetEndpoint",
+    "ServiceName": "DotNetCore",
     "Namespace": "",
     "HeaderVersions": [
       "sw8"
@@ -18,13 +18,13 @@
       "ProtocolVersion": "v8",
       "QueueSize": 30000,
       "BatchSize": 3000,
-      "gRPC": {
-        "Servers": "$address:11800",
-        "Timeout": 10000,
-        "ConnectTimeout": 10000,
-        "ReportTimeout": 600000,
-        "ForceTLS": false
-      }
+        "gRPC": {
+            "Servers": "$address:11800",
+            "Timeout": 10000,
+            "ConnectTimeout": 10000,
+            "ReportTimeout": 600000,
+            "ForceTLS": $tlsActive
+        }
     }
   }
 }
