@@ -82,21 +82,6 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
 
-        [Route("err_loop_inf_snap")]
-        public string err_loop_snap()
-        {
-            string test = "";
-            int i = 0;
-            while (true)
-            {
-                Console.WriteLine(i);
-                i++;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("err_loop_inf_snap");
-            return test;
-        }
-
-
         [Route("err_loop_for_1000_snap")]
         public string err_loop_for_1000_snap()
         {
