@@ -10,9 +10,12 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ThreadsController : Controller 
+
+    public class ThreadsController : Controller
     {
-        static Thread thread1, thread2,thread3;
+        public Thread thread1 { get; set; }
+        public Thread thread2 { get; set; }
+        public Thread thread3 { get; set; }
         [Route("new_thread")]
         public string NewThread()
         {
@@ -32,8 +35,10 @@ namespace dotNetEndpoint.Controllers
             Thread pochodnyWatek = new Thread(ts);
             // Uruchamiamy wątek pochodny
             pochodnyWatek.Start();
+
             // zatrzymanie głównego wątku
             Thread.Sleep(2000);
+
             // przerwanie wątku pochodnego
             test += ("Główny wątek: przerwanie wątku pochodnego");
             pochodnyWatek.Interrupt();
@@ -42,20 +47,10 @@ namespace dotNetEndpoint.Controllers
 
         }
         [Route("join_threads")]
-        public string JoinThreads()
+        public void JoinThreads()
         {
-            string test = "Wypisano w konsoli";
-            thread1 = new Thread(ThreadProc);
-            thread1.Name = "Thread1";
-            thread1.Start();
-
-            thread2 = new Thread(ThreadProc);
-            thread2.Name = "Thread2";
-            thread2.Start();
-            RevDeBugAPI.Snapshot.RecordSnapshot("join_threads");
-
-            return test;
-
+            var testCase = new TwoThreadsJoinCase();
+            testCase.initializeTwoThreads();
         }
 
         [Route("call_thread")]
@@ -117,9 +112,9 @@ namespace dotNetEndpoint.Controllers
                 Console.WriteLine("Wątek został wykonany");
 
             }
-            catch (ThreadAbortException e)
+            catch (ThreadInterruptedException e)
             {
-                Console.WriteLine("Wyjątek: ThreadAbortException");
+                Console.WriteLine("Wyjątek: ThreadInterruptedException");
 
             }
             finally
@@ -167,27 +162,41 @@ namespace dotNetEndpoint.Controllers
                 }
                 Console.WriteLine("Wątek został wykonany");
             }
-            catch (ThreadAbortException e)
+            catch (ThreadInterruptedException e)
             {
-                Console.WriteLine("Wyjątek: ThreadAbortException");
+                Console.WriteLine("Wyjątek: ThreadInterruptedException");
             }
             finally
             {
                 Console.WriteLine("Nie można złapać wyjątku");
             }
-
         }
-        private static void ThreadProc()
+        public class TwoThreadsJoinCase
         {
-            Console.WriteLine("\nCurrent thread: {0}", Thread.CurrentThread.Name);
-            if (Thread.CurrentThread.Name == "Thread1" &&
-                thread2.ThreadState != ThreadState.Unstarted)
-                thread2.Join();
+            private Thread thread1, thread2;
+            public void initializeTwoThreads()
+            {
+                string test = "Wypisano w konsoli";
+                thread1 = new Thread(ThreadProc);
+                thread1.Name = "Thread1";
+                thread2 = new Thread(ThreadProc);
+                thread2.Name = "Thread2";
+                thread1.Start();
+                thread2.Start();
+                RevDeBugAPI.Snapshot.RecordSnapshot("join_threads");
+            }
+            private void ThreadProc()
+            { 
+                Console.WriteLine("\nCurrent thread: {0}", Thread.CurrentThread.Name);
+                if (Thread.CurrentThread.Name == "Thread1" &&
+                    thread2.ThreadState != ThreadState.Unstarted)
+                    thread2.Join();
 
-            Thread.Sleep(4000);
-            Console.WriteLine("\nCurrent thread: {0}", Thread.CurrentThread.Name);
-            Console.WriteLine("Thread1: {0}", thread1.ThreadState);
-            Console.WriteLine("Thread2: {0}\n", thread2.ThreadState);
+                Thread.Sleep(4000);
+                Console.WriteLine("\nCurrent thread: {0}", Thread.CurrentThread.Name);
+                Console.WriteLine("Thread1: {0}", thread1.ThreadState);
+                Console.WriteLine("Thread2: {0}\n", thread2.ThreadState);
+            }
         }
     }
 }
