@@ -24,29 +24,6 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
 
-        [Route("one_dimensional_array_bounds_exception")]
-        public string OneDimensionalArrayBoundsException()
-        {
-            string test = "";
-            try
-            {
-                string[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
-                int[] myNum = { 2, 4, 5, 4 };
-
-                for (int i = 0; i < 100; i++)
-                {
-                    test += cars[i] + " ";
-                }
-            }
-            catch (Exception e)
-            {
-                RevDeBugAPI.Snapshot.RecordException(e);
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("one_dimensional_array_bounds_exception");
-            return test;
-
-        }
         [Route("one_dimensional_array_reference")]
         public string OneDimensionalArrayReference()
         {
