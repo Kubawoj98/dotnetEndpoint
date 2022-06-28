@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class Structures : Controller
+    public class Structure : Controller
     {
         [Route("get_coordinate")]
         public string GetCoordinate()
