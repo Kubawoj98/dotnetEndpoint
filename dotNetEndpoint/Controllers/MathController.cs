@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class MathsController : Controller 
+    public class MathController : Controller 
     {
         [Route("max")]
         public string Max()
