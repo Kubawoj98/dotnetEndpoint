@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class InterfacesController : Controller
+    public class InterfaceController : Controller
     {
         [Route("interface_implementation")]
         public string InterfaceImplementation()
