@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ExceptionsController : Controller
+    public class ExceptionController : Controller
     {
         [Route("try_catch")]
         public string TryCatch()

@@ -11,7 +11,7 @@ namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
 
-    public class ThreadsController : Controller
+    public class ThreadController : Controller
     {
         public Thread thread1 { get; set; }
         public Thread thread2 { get; set; }
@@ -73,7 +73,7 @@ namespace dotNetEndpoint.Controllers
             return test;
 
         }
-        [Route("multipleCallOfMehtod")]
+        [Route("multiple_call_of_method")]
         public string multipleCallOfMehtod()
         {
             string test = "";
@@ -88,7 +88,7 @@ namespace dotNetEndpoint.Controllers
             thread3.Start();
 
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("multipleCallOfMehtod");
+            RevDeBugAPI.Snapshot.RecordSnapshot("multiple_call_of_method");
 
             return test;
 

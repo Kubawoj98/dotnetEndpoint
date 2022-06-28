@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ObjectsController : Controller
+    public class ObjectController : Controller
     {
         List<Person> people = new List<Person>();
-        public ObjectsController()
+        public ObjectController()
         {
             people.Add(new Person { FirstName = "Mike", LastName = "Tyson" });
             people.Add(new Person { FirstName = "Conor", LastName = "McGregor" });

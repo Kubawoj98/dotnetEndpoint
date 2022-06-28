@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ListsController : Controller
+    public class ListController : Controller
     {
         [Route("list_size")]
         public string ListSize()
