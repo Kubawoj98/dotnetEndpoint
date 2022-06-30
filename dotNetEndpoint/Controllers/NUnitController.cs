@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class NunitController : Controller
+    public class NUnitController : Controller
     {
         [Route("assert_equal")]
         public string AssertEqual()
