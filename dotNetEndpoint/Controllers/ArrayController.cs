@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ArraysController : Controller
+    public class ArrayController : Controller
     {
         [Route("one_dimensional_array")]
         public string OneDimensionalArray()

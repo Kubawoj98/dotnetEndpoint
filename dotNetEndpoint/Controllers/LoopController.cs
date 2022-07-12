@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class LoopsController : Controller
+    public class LoopController : Controller
     {
         [Route("single_for")]
         public string SingleFor()

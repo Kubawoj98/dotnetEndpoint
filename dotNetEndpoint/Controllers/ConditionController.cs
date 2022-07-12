@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ConditionsController : Controller
+    public class ConditionController : Controller
     {
         [Route("switch")]
         public string Switch()

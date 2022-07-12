@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class MathsController : Controller 
+    public class MathController : Controller 
     {
         [Route("max")]
         public string Max()
@@ -121,20 +121,20 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("pow");
             return test;
         }
-        [Route("copySign")]
+        [Route("copy_sign")]
         public string copySign()
         {
             string test = "";
             test += Math.CopySign(12, -4);
-            RevDeBugAPI.Snapshot.RecordSnapshot("copySign");
+            RevDeBugAPI.Snapshot.RecordSnapshot("copy_sign");
             return test;
         }
-        [Route("expToString")]
+        [Route("exp_to_string")]
         public string ExpToString()
         {
             string test = "";
             test += Math.Exp(12).ToString();
-            RevDeBugAPI.Snapshot.RecordSnapshot("expToString");
+            RevDeBugAPI.Snapshot.RecordSnapshot("exp_to_string");
             return test;
         }
 

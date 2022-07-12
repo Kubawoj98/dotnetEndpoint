@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class ObjectsController : Controller
+    public class ObjectController : Controller
     {
         List<Person> people = new List<Person>();
-        public ObjectsController()
+        public ObjectController()
         {
             people.Add(new Person { FirstName = "Mike", LastName = "Tyson" });
             people.Add(new Person { FirstName = "Conor", LastName = "McGregor" });
@@ -31,13 +31,13 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("copy_constructor");
             return person.FirstName + " " + person.LastName;
         }
-        [Route("copy_constructor_setvalue")]
+        [Route("copy_constructor_set_value")]
         public string GetCopyConstructorSetValue()
         {
             person = new Person(people[1]);
             person.SetFirstName("Harry");
             person.SetLastName("Potter");
-            RevDeBugAPI.Snapshot.RecordSnapshot("copy_constructor_setvalue");
+            RevDeBugAPI.Snapshot.RecordSnapshot("copy_constructor_set_value");
             return person.FirstName + " " + person.LastName;
         }
         [Route("inheritance")]
