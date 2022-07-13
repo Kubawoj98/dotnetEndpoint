@@ -52,7 +52,6 @@ namespace dotNetEndpoint.Controllers
         public string newExceptionsClass()
         {
             string test = " ";
-            int zero = 0;
             try
             {
                 throw new TestException("Error: ");
@@ -122,6 +121,78 @@ namespace dotNetEndpoint.Controllers
             }
 
             RevDeBugAPI.Snapshot.RecordSnapshot("array_index_out_of_bound");
+            return test;
+        }
+
+        [Route("try_catch_finally")]
+        public string tryCatchFinally()
+        {
+            string test = " ";
+            try
+            {
+                // "Kebab" is not a number
+                int num = Int32.Parse("Kebab");
+
+                Console.WriteLine(num);
+            }
+            catch
+            {
+                test = "Info from catch -> You asked for out of bound array index who";
+            }
+            finally
+            {
+                test = "Info from finally -> You asked for out of bound array index who";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_finally");
+            return test;
+        }
+
+        [Route("try_in_try")]
+        public string tryInTry()
+        {
+            string test = " ";
+            int zero = 0;
+            try
+            {
+                try
+                {
+                    zero = 100 / zero;
+                }
+                catch
+                {
+                    test = "Inner catch -> You can't divide by zero! ";
+                }
+            }
+            catch
+            {
+                test = "Outer catch -> You can't divide by zero! ";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_in_try");
+            return test;
+        }
+
+        [Route("try_catch_if")]
+        public string tryCatchIf()
+        {
+            string test = " ";
+            int zero = 0;
+            bool passed = true;
+            try
+            {
+                zero = 100 / zero;
+            }
+            catch
+            {
+                passed = false;
+            }
+            if (passed==false)
+            {
+                test = "Info from if -> You can't divide by zero! ";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_if");
             return test;
         }
     }
