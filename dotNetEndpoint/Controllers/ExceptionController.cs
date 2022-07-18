@@ -128,22 +128,30 @@ namespace dotNetEndpoint.Controllers
         public string tryCatchFinally()
         {
             string test = " ";
+            int zero = 0;
             try
             {
-                // "Kebab" is not a number
-                int num = Int32.Parse("Kebab");
-
-                Console.WriteLine(num);
+                zero = 100 / zero;
             }
-            catch
+            catch (ArithmeticException e)
             {
-                test = "Info from catch -> You asked for out of bound array index who";
+                test = "Info from catch";
+                 
+                if(test.Length >= 0)
+                {
+                    test += "-> You asked for out of bound array index who";
+                }
             }
             finally
             {
                 test = "Info from finally -> You asked for out of bound array index who";
-            }
+                var test3 = test;
+                if(test3.Length >= 0)
+                {
 
+                }
+            }
+            
             RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_finally");
             return test;
         }
