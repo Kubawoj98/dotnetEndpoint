@@ -16,7 +16,7 @@ namespace dotNetEndpoint.Controllers
             string test = "";
             Shop sportShop = new Shop();
             test = sportShop.decoration("Holiday");
-            RevDeBugAPI.Snapshot.RecordSnapshot("interface_implementation");
+            Utilities.RevDeBugCaller.RecordSnapshot("interface_implementation");
             return test;
         }
         [Route("interface_static_methods")]
@@ -24,7 +24,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test = IShop.getPrice("dybel") + " $";
-            RevDeBugAPI.Snapshot.RecordSnapshot("interface_static_methods");
+            Utilities.RevDeBugCaller.RecordSnapshot("interface_static_methods");
             return test;
         }
             [Route("interface_default_methods")]
@@ -34,7 +34,7 @@ namespace dotNetEndpoint.Controllers
             Shop shop = new Shop();
             test = shop.decoration("big yellow cash desk");
             test += shop.workers();
-            RevDeBugAPI.Snapshot.RecordSnapshot("interface_default_methods");
+            Utilities.RevDeBugCaller.RecordSnapshot("interface_default_methods");
             return test;
         }
         }

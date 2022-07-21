@@ -21,7 +21,7 @@ namespace dotNetEndpoint.Controllers
             foreach (Match match in rgx.Matches(sentence))
                test+=string.Format("Found '{0}' at position {1} \n",
                                   match.Value, match.Index);
-            RevDeBugAPI.Snapshot.RecordSnapshot("find_word");
+            Utilities.RevDeBugCaller.RecordSnapshot("find_word");
             return test;
         }
         [Route("email_verification")]
@@ -38,7 +38,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += emailString + " is not a correct email format";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("email_verification");
+            Utilities.RevDeBugCaller.RecordSnapshot("email_verification");
             return test;
         }
     }

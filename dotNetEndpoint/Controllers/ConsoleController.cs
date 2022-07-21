@@ -23,7 +23,7 @@ namespace dotNetEndpoint.Controllers
             Console.WriteLine(2L);
             Console.WriteLine(1);
             Console.WriteLine(141414452412341);
-            RevDeBugAPI.Snapshot.RecordSnapshot("console_writeline");
+            Utilities.RevDeBugCaller.RecordSnapshot("console_writeline");
             return test;
         }
         [Route("console_writeline_formatted")]
@@ -32,7 +32,7 @@ namespace dotNetEndpoint.Controllers
             string test = "Console Write Formatted";
             Console.WriteLine("Hello %s!%n", "World");
             Console.WriteLine("Home%nCar%nDog");
-            RevDeBugAPI.Snapshot.RecordSnapshot("console_writeline_formatted");
+            Utilities.RevDeBugCaller.RecordSnapshot("console_writeline_formatted");
             return test;
         }
         [Route("max_string_length")]
@@ -42,7 +42,7 @@ namespace dotNetEndpoint.Controllers
             string test;
             test = "ccc" + a1;
             Console.WriteLine(test);
-            RevDeBugAPI.Snapshot.RecordSnapshot("max_string_length");
+            Utilities.RevDeBugCaller.RecordSnapshot("max_string_length");
             return test;
         }
         [Route("single_quotes")]
@@ -54,7 +54,7 @@ namespace dotNetEndpoint.Controllers
             string test;
             test = "justRegularString" + a1 + a2 + a3;
             Console.WriteLine(test);
-            RevDeBugAPI.Snapshot.RecordSnapshot("single_quotes");
+            Utilities.RevDeBugCaller.RecordSnapshot("single_quotes");
             return test;
         }
         [Route("double_quotes")]
@@ -65,7 +65,7 @@ namespace dotNetEndpoint.Controllers
             string test;
             test = "justRegularString" + a1 + a2;
             Console.WriteLine(test);
-            RevDeBugAPI.Snapshot.RecordSnapshot("double_quotes");
+            Utilities.RevDeBugCaller.RecordSnapshot("double_quotes");
             return test;
         }
     }

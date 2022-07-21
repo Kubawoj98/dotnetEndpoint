@@ -16,7 +16,7 @@ namespace dotNetEndpoint.Controllers
             string test = "";
             DateTime dateTime = DateTime.Now;
             test += dateTime;
-            RevDeBugAPI.Snapshot.RecordSnapshot("current_time");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("current_time");
             return test;
         }
         [Route("cultural_info_date_us")]
@@ -28,7 +28,7 @@ namespace dotNetEndpoint.Controllers
             var gmt1Date = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(utcDate, "W. Europe Standard Time");
             dateString = gmt1Date.ToString("ddd, dd MMM yyyy HH:mm:ss z", usCulture);
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("cultural_info_date_us");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("cultural_info_date_us");
             return dateString;
         }
         [Route("cultural_info_date_fiji")]
@@ -40,7 +40,7 @@ namespace dotNetEndpoint.Controllers
             var gmt1Date = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(utcDate, "India Standard Time");
             dateString = gmt1Date.ToString("ddd, dd MMM yyyy HH:mm:ss z", fijiCulture);
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("cultural_info_date_fiji");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("cultural_info_date_fiji");
             return dateString;
         }
         [Route("add_hours")]
@@ -51,7 +51,7 @@ namespace dotNetEndpoint.Controllers
             dateTime = dateTime.AddHours(12);
             test = dateTime.ToString();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("add_hours");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("add_hours");
             return test;
         }
         [Route("add_minutes")]
@@ -62,7 +62,7 @@ namespace dotNetEndpoint.Controllers
             dateTime = dateTime.AddMinutes(1200);
             test = dateTime.ToString();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("add_minutes");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("add_minutes");
             return test;
         }
         [Route("add_days")]
@@ -73,7 +73,7 @@ namespace dotNetEndpoint.Controllers
             dateTime = dateTime.AddDays(12);
             test = dateTime.ToString();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("add_days");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("add_days");
             return test;
         }
         [Route("format")]
@@ -86,7 +86,7 @@ namespace dotNetEndpoint.Controllers
             test += "\n";
             test += DateTime.Now.ToString("MMMM dd");
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("format");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("format");
             return test;
         }
             [Route("compare")]
@@ -99,7 +99,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += "Tommorow is after today";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("compare");
+            dotNetEndpoint.Utilities.RevDeBugCaller.RecordSnapshot("compare");
             return test;
             }
         }

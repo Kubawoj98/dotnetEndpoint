@@ -18,7 +18,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += "test ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("single_for");
+            Utilities.RevDeBugCaller.RecordSnapshot("single_for");
             return test;
         }
         [Route("nested_for")]
@@ -33,7 +33,7 @@ namespace dotNetEndpoint.Controllers
                     test += "secondLoop ";
                 }
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("nested_for");
+            Utilities.RevDeBugCaller.RecordSnapshot("nested_for");
 
             return test;
         }
@@ -47,7 +47,7 @@ namespace dotNetEndpoint.Controllers
                 test = test + "TEST" + i + " ";
                 i++;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("single_while");
+            Utilities.RevDeBugCaller.RecordSnapshot("single_while");
 
             return test;
         }
@@ -66,7 +66,7 @@ namespace dotNetEndpoint.Controllers
                 }
                 i++;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("nested_while");
+            Utilities.RevDeBugCaller.RecordSnapshot("nested_while");
 
             return test;
         }
@@ -81,7 +81,7 @@ namespace dotNetEndpoint.Controllers
                 i++;
             } while (i < 10);
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("do_while");
+            Utilities.RevDeBugCaller.RecordSnapshot("do_while");
 
             return test;
         }
@@ -94,7 +94,7 @@ namespace dotNetEndpoint.Controllers
             {
                 lower = test[i].ToLower();
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("foreach");
+            Utilities.RevDeBugCaller.RecordSnapshot("foreach");
 
             return lower;
         }
@@ -110,7 +110,7 @@ namespace dotNetEndpoint.Controllers
                 }
                 test += i + " ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("break");
+            Utilities.RevDeBugCaller.RecordSnapshot("break");
 
             return test;
         }
@@ -126,7 +126,7 @@ namespace dotNetEndpoint.Controllers
                 }
                 test += i + " ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("continue");
+            Utilities.RevDeBugCaller.RecordSnapshot("continue");
 
             return test;
         }
@@ -136,7 +136,7 @@ namespace dotNetEndpoint.Controllers
             String test = "";
             int result = SumClass.Sum(5);
             test += result;
-            RevDeBugAPI.Snapshot.RecordSnapshot("recursion");
+            Utilities.RevDeBugCaller.RecordSnapshot("recursion");
 
             return test;
         }

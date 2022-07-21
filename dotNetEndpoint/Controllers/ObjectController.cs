@@ -20,7 +20,7 @@ namespace dotNetEndpoint.Controllers
         [Route("object_definition")]
         public string Get()
         {
-            RevDeBugAPI.Snapshot.RecordSnapshot("object_definition");
+            Utilities.RevDeBugCaller.RecordSnapshot("object_definition");
             return person.FirstName + " "+ person.LastName;
             
         }
@@ -28,7 +28,7 @@ namespace dotNetEndpoint.Controllers
         public string GetCopyConstructor()
         {
             person = new Person(people[1]);
-            RevDeBugAPI.Snapshot.RecordSnapshot("copy_constructor");
+            Utilities.RevDeBugCaller.RecordSnapshot("copy_constructor");
             return person.FirstName + " " + person.LastName;
         }
         [Route("copy_constructor_set_value")]
@@ -37,7 +37,7 @@ namespace dotNetEndpoint.Controllers
             person = new Person(people[1]);
             person.SetFirstName("Harry");
             person.SetLastName("Potter");
-            RevDeBugAPI.Snapshot.RecordSnapshot("copy_constructor_set_value");
+            Utilities.RevDeBugCaller.RecordSnapshot("copy_constructor_set_value");
             return person.FirstName + " " + person.LastName;
         }
         [Route("inheritance")]
@@ -48,7 +48,7 @@ namespace dotNetEndpoint.Controllers
             manager.SetLastName("Smith");
             manager.SetSalary(4000);
             manager.SetBonus(1000);
-            RevDeBugAPI.Snapshot.RecordSnapshot("inheritance");
+            Utilities.RevDeBugCaller.RecordSnapshot("inheritance");
             return manager.FirstName + " " + manager.LastName + " " + manager.GetSalary() + " " + manager.GetBonus();
         }
         [Route("multi_level_inheritance")]
@@ -60,7 +60,7 @@ namespace dotNetEndpoint.Controllers
             president.SetSalary(10000);
             president.SetBonus(2000);
             president.SetAmountOfBranches(17);
-            RevDeBugAPI.Snapshot.RecordSnapshot("multi_level_inheritance");
+            Utilities.RevDeBugCaller.RecordSnapshot("multi_level_inheritance");
             return president.FirstName + " " + president.LastName + " Salary:" + president.GetSalary() + " Bonus:" + president.GetBonus() + " " + president.GetAmountOfBranches() + " branches";
         }
         [Route("inner_class")]
@@ -70,7 +70,7 @@ namespace dotNetEndpoint.Controllers
             OuterClass myOuter = new OuterClass();
             OuterClass.InnerClass myInner = new OuterClass.InnerClass();
             test = "" + myOuter.ToString();
-            RevDeBugAPI.Snapshot.RecordSnapshot("inner_class");
+            Utilities.RevDeBugCaller.RecordSnapshot("inner_class");
             return test;
         }
 
@@ -81,7 +81,7 @@ namespace dotNetEndpoint.Controllers
             Pig myPig = new Pig();
             myPig.AnimalSound();
             myPig.Sleep();
-            RevDeBugAPI.Snapshot.RecordSnapshot("abstract_class");
+            Utilities.RevDeBugCaller.RecordSnapshot("abstract_class");
             return test;
         }
         [Route("check_objects_to_string")]
@@ -90,7 +90,7 @@ namespace dotNetEndpoint.Controllers
             person = new Person(people[1]);
             string test = person.ToString();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("check_objects_to_string");
+            Utilities.RevDeBugCaller.RecordSnapshot("check_objects_to_string");
             return test;
         }
         [Route("methods_inside_method")]
@@ -100,7 +100,7 @@ namespace dotNetEndpoint.Controllers
             Person person = new Person("Tyson", "Fury");
             test += person.GetUserData();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("methods_inside_method");
+            Utilities.RevDeBugCaller.RecordSnapshot("methods_inside_method");
             return test;
         }
     }

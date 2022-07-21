@@ -23,7 +23,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test = "You can't divide by zero! ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
+            Utilities.RevDeBugCaller.RecordSnapshot("try_catch");
             return test;
         }
         
@@ -44,7 +44,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test = "You can't divide by zero! ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_appropriate_exception");
+            Utilities.RevDeBugCaller.RecordSnapshot("try_catch_appropriate_exception");
             return test;
         }
 
@@ -61,7 +61,7 @@ namespace dotNetEndpoint.Controllers
                 test += e.Message;
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
+            Utilities.RevDeBugCaller.RecordSnapshot("new_exception_class");
             return test;
         }
 
@@ -80,7 +80,7 @@ namespace dotNetEndpoint.Controllers
                 test = "You ask for string out of bound";
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("string_index_out_of_bound");
+            Utilities.RevDeBugCaller.RecordSnapshot("string_index_out_of_bound");
             return test;
         }
 
@@ -100,7 +100,7 @@ namespace dotNetEndpoint.Controllers
                 test = "Number format exception";
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("number_format");
+            Utilities.RevDeBugCaller.RecordSnapshot("number_format");
             return test;
         }
 
@@ -120,7 +120,7 @@ namespace dotNetEndpoint.Controllers
                 test = "You asked for  out of bound array index who";
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("array_index_out_of_bound");
+            Utilities.RevDeBugCaller.RecordSnapshot("array_index_out_of_bound");
             return test;
         }
 
@@ -152,7 +152,7 @@ namespace dotNetEndpoint.Controllers
                 }
             }
             
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_finally");
+            Utilities.RevDeBugCaller.RecordSnapshot("try_catch_finally");
             return test;
         }
 
@@ -177,7 +177,7 @@ namespace dotNetEndpoint.Controllers
                 test = "Outer catch -> You can't divide by zero! ";
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_in_try");
+            Utilities.RevDeBugCaller.RecordSnapshot("try_in_try");
             return test;
         }
 
@@ -200,7 +200,7 @@ namespace dotNetEndpoint.Controllers
                 test = "Info from if -> You can't divide by zero! ";
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_if");
+            Utilities.RevDeBugCaller.RecordSnapshot("try_catch_if");
             return test;
         }
     }

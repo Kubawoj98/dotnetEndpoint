@@ -31,7 +31,7 @@ namespace dotNetEndpoint.Controllers
                     test = "Default value";
                     break;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("switch");
+            Utilities.RevDeBugCaller.RecordSnapshot("switch");
             return test;
         }
         [Route("single_if")]
@@ -48,7 +48,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test = "less";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("single_if");
+            Utilities.RevDeBugCaller.RecordSnapshot("single_if");
             return test;
         }
         [Route("nested_if")]
@@ -67,7 +67,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test = "User is not Jan Kowalski";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("nested_if");
+            Utilities.RevDeBugCaller.RecordSnapshot("nested_if");
             return test;
         }
     }

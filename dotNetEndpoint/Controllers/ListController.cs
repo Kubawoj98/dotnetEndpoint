@@ -20,7 +20,7 @@ namespace dotNetEndpoint.Controllers
                 list.Add(" Number" + i);
             }
             test = list.Count().ToString();
-            RevDeBugAPI.Snapshot.RecordSnapshot("list_size");
+            Utilities.RevDeBugCaller.RecordSnapshot("list_size");
             return test;
         }
         [Route("add_element")]
@@ -34,7 +34,7 @@ namespace dotNetEndpoint.Controllers
             list.Add("Raphael");
             test = list[list.Count - 1];
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("add_element");
+            Utilities.RevDeBugCaller.RecordSnapshot("add_element");
             return test;
         }
         [Route("remove_element")]
@@ -49,7 +49,7 @@ namespace dotNetEndpoint.Controllers
             list.Remove("Donatello");
             test = list[1];
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("remove_element");
+            Utilities.RevDeBugCaller.RecordSnapshot("remove_element");
             return test;
         }
     }

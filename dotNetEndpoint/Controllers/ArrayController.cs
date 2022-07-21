@@ -20,7 +20,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += cars[i] + " ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("one_dimensional_array");
+            Utilities.RevDeBugCaller.RecordSnapshot("one_dimensional_array");
             return test;
         }
 
@@ -32,7 +32,7 @@ namespace dotNetEndpoint.Controllers
             string[] carsCopyReference = cars;
             carsCopyReference[0] = "Fiat 126p";
             test = cars[0];
-            RevDeBugAPI.Snapshot.RecordSnapshot("one_dimensional_array_reference");
+            Utilities.RevDeBugCaller.RecordSnapshot("one_dimensional_array_reference");
             return test;
         }
         [Route("one_dimensional_copy_array")]
@@ -46,7 +46,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += " " + item;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("one_dimensional_copy_array");
+            Utilities.RevDeBugCaller.RecordSnapshot("one_dimensional_copy_array");
             return test;
         }
         [Route("one_dimensional_array_sort")]
@@ -59,7 +59,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += " " + item;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("one_dimensional_array_sort");
+            Utilities.RevDeBugCaller.RecordSnapshot("one_dimensional_array_sort");
             return test;
         }
         [Route("multidimensional_array")]
@@ -79,7 +79,7 @@ namespace dotNetEndpoint.Controllers
                 }
             }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("multidimensional_array");
+            Utilities.RevDeBugCaller.RecordSnapshot("multidimensional_array");
             return test;
         }
         [Route("arrays_filtered")]
@@ -97,7 +97,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += res + ", ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("arrays_filtered");
+            Utilities.RevDeBugCaller.RecordSnapshot("arrays_filtered");
             return test;
         }
         [Route("jagged_array")]
@@ -115,7 +115,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += scores[1][i] + " ";
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("jagged_array");
+            Utilities.RevDeBugCaller.RecordSnapshot("jagged_array");
             return test;
         }
         [Route("array_as_parameter")]
@@ -124,7 +124,7 @@ namespace dotNetEndpoint.Controllers
             string test = "";
                 int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             test = sum(numbers)+"";
-            RevDeBugAPI.Snapshot.RecordSnapshot("array_as_parameter");
+            Utilities.RevDeBugCaller.RecordSnapshot("array_as_parameter");
             return test;
         }
         public double sum(int[] arrayOfNumbers)

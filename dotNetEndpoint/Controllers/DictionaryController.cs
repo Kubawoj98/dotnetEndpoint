@@ -19,7 +19,7 @@ namespace dotNetEndpoint.Controllers
             capitalCities.Add("Norway", "Oslo");
             capitalCities.Add("USA", "Washington DC");
             capitalCities.TryGetValue("Norway", out test);
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_value_method");
+            Utilities.RevDeBugCaller.RecordSnapshot("get_value_method");
             return test;
         }
         [Route("get_value_assign")]
@@ -32,7 +32,7 @@ namespace dotNetEndpoint.Controllers
             capitalCities.Add("Norway", "Oslo");
             capitalCities.Add("USA", "Washington DC");
             test += capitalCities["England"];
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_value_assign");
+            Utilities.RevDeBugCaller.RecordSnapshot("get_value_assign");
             return test;
         }
         [Route("update_value")]
@@ -44,7 +44,7 @@ namespace dotNetEndpoint.Controllers
             cities.Add("Germany", "Berlin");
             cities["England"]="Liverpool, Bristol";
             test += cities["England"];
-            RevDeBugAPI.Snapshot.RecordSnapshot("update_value");
+            Utilities.RevDeBugCaller.RecordSnapshot("update_value");
             return test;
         }
         [Route("clear_values")]
@@ -64,7 +64,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("clear_values");
+            Utilities.RevDeBugCaller.RecordSnapshot("clear_values");
             return test;
         }
         [Route("remove_value")]
@@ -89,7 +89,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("remove_value");
+            Utilities.RevDeBugCaller.RecordSnapshot("remove_value");
             return test;
         }
         [Route("get_from_value")]
@@ -110,7 +110,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_from_value");
+            Utilities.RevDeBugCaller.RecordSnapshot("get_from_value");
             return test;
         }
         [Route("different_types")]
@@ -130,7 +130,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("different_types");
+            Utilities.RevDeBugCaller.RecordSnapshot("different_types");
             return test;
         }
         [Route("different_types_sort_ascending")]
@@ -159,7 +159,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending");
+            Utilities.RevDeBugCaller.RecordSnapshot("different_types_sort_ascending");
             return test;
         }
             [Route("different_types_sort_descending")]
@@ -188,7 +188,7 @@ namespace dotNetEndpoint.Controllers
                 {
                     test += e;
                 }
-                RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_descending");
+                Utilities.RevDeBugCaller.RecordSnapshot("different_types_sort_descending");
                 return test;
             }
         }

@@ -19,7 +19,7 @@ namespace dotNetEndpoint.Controllers
             int a = 5, b = 4;
             b = 5;
             Assert.AreEqual(a, b);
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_equal");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_equal");
             return test;
         }
         [Route("assert_equal_exception")]
@@ -36,7 +36,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_equal_exception");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_equal_exception");
             return test;
         }
         [Route("assert_false")]
@@ -52,7 +52,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_false");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_false");
             return test;
         }
         [Route("assert_true")]
@@ -69,7 +69,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_true");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_true");
             return test;
         }
         [Route("assert_null_exception")]
@@ -87,7 +87,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_null_exception");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_null_exception");
             return test;
         }
         [Route("assert_null")]
@@ -105,7 +105,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_null");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_null");
             return test;
         }
         [Route("assert_arrays")]
@@ -130,7 +130,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_arrays");
             return test;
         }
         [Route("assert_arrays_exception")]
@@ -156,7 +156,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays_exception");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_arrays_exception");
             return test;
         }
         [Route("person_comparer")]
@@ -169,7 +169,7 @@ namespace dotNetEndpoint.Controllers
             Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
 
             Assert.AreSame(p1.FirstName, p2.FirstName);
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
+            Utilities.RevDeBugCaller.RecordSnapshot("person_comparer");
             return test;
 
 
@@ -191,7 +191,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_exception");
+            Utilities.RevDeBugCaller.RecordSnapshot("person_comparer_exception");
             return test;
         }
         [Route("person_comparer_inheritance")]
@@ -211,7 +211,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_inheritance");
+            Utilities.RevDeBugCaller.RecordSnapshot("person_comparer_inheritance");
             return test;
         }
         [Route("inconclusive")]
@@ -228,7 +228,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive");
+            Utilities.RevDeBugCaller.RecordSnapshot("inconclusive");
             return test;
         }
         [Route("inconclusive_with_message")]
@@ -245,7 +245,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive_with_message");
+            Utilities.RevDeBugCaller.RecordSnapshot("inconclusive_with_message");
             return test;
         }
         [Route("ignore")]
@@ -262,7 +262,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("ignore");
+            Utilities.RevDeBugCaller.RecordSnapshot("ignore");
             return test;
         }
 
@@ -279,7 +279,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("ignore_with_message");
+            Utilities.RevDeBugCaller.RecordSnapshot("ignore_with_message");
             return test;
 
         }
@@ -298,7 +298,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("is_instance_of_type");
+            Utilities.RevDeBugCaller.RecordSnapshot("is_instance_of_type");
             return test;
         }
         [Route("assert_is_instance_of_type")]
@@ -316,7 +316,7 @@ namespace dotNetEndpoint.Controllers
             {
                 test += e;
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_is_instance_of_type");
+            Utilities.RevDeBugCaller.RecordSnapshot("assert_is_instance_of_type");
             return test;
         }
     }

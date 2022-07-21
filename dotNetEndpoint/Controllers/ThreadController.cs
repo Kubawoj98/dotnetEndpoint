@@ -23,7 +23,7 @@ namespace dotNetEndpoint.Controllers
             Thread th = Thread.CurrentThread;
             th.Name = "GłównyWątek";
             test += th.Name;
-            RevDeBugAPI.Snapshot.RecordSnapshot("new_thread");
+            Utilities.RevDeBugCaller.RecordSnapshot("new_thread");
             return test;
         }
         [Route("child_threads")]
@@ -42,7 +42,7 @@ namespace dotNetEndpoint.Controllers
             // przerwanie wątku pochodnego
             test += ("Główny wątek: przerwanie wątku pochodnego");
             pochodnyWatek.Interrupt();
-            RevDeBugAPI.Snapshot.RecordSnapshot("child_threads");
+            Utilities.RevDeBugCaller.RecordSnapshot("child_threads");
             return test;
 
         }
@@ -68,7 +68,7 @@ namespace dotNetEndpoint.Controllers
             }
             
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("call_thread");
+            Utilities.RevDeBugCaller.RecordSnapshot("call_thread");
 
             return test;
 
@@ -88,7 +88,7 @@ namespace dotNetEndpoint.Controllers
             thread3.Start();
 
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("multiple_call_of_method");
+            Utilities.RevDeBugCaller.RecordSnapshot("multiple_call_of_method");
 
             return test;
 
@@ -183,7 +183,7 @@ namespace dotNetEndpoint.Controllers
                 thread2.Name = "Thread2";
                 thread1.Start();
                 thread2.Start();
-                RevDeBugAPI.Snapshot.RecordSnapshot("join_threads");
+                Utilities.RevDeBugCaller.RecordSnapshot("join_threads");
             }
             private void ThreadProc()
             { 

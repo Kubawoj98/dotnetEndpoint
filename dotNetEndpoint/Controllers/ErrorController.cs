@@ -22,14 +22,14 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             throw new Exception();
-            RevDeBugAPI.Snapshot.RecordSnapshot("error_snap");
+            Utilities.RevDeBugCaller.RecordSnapshot("error_snap");
             return test;
         }
 
         [Route("error_snap2")]
         public string err_snap2()
         {
-            RevDeBugAPI.Snapshot.RecordSnapshot("error_snap");
+            Utilities.RevDeBugCaller.RecordSnapshot("error_snap");
             string test = "";
             throw new Exception();
             return test;
@@ -78,7 +78,7 @@ namespace dotNetEndpoint.Controllers
             string test = "";
             char[] alfa = { 'd', 'f' };
             Console.WriteLine(alfa[12]);
-            RevDeBugAPI.Snapshot.RecordSnapshot("err_array_snap");
+            Utilities.RevDeBugCaller.RecordSnapshot("err_array_snap");
             return test;
         }
 
@@ -93,7 +93,7 @@ namespace dotNetEndpoint.Controllers
                     throw new AggregateException();
                 }
             }
-            RevDeBugAPI.Snapshot.RecordSnapshot("err_loop_for_1000_snap");
+            Utilities.RevDeBugCaller.RecordSnapshot("err_loop_for_1000_snap");
             return test;
         }
     }

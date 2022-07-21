@@ -14,7 +14,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
              test+= Math.Max(10, 150);
-            RevDeBugAPI.Snapshot.RecordSnapshot("max");
+            Utilities.RevDeBugCaller.RecordSnapshot("max");
             return test;
         }
         [Route("min")]
@@ -22,7 +22,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Min(10, 150);
-            RevDeBugAPI.Snapshot.RecordSnapshot("min");
+            Utilities.RevDeBugCaller.RecordSnapshot("min");
             return test;
         }
         [Route("sqrt")]
@@ -30,7 +30,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Sqrt(9);
-            RevDeBugAPI.Snapshot.RecordSnapshot("sqrt");
+            Utilities.RevDeBugCaller.RecordSnapshot("sqrt");
             return test;
         }
         [Route("abs")]
@@ -38,7 +38,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Abs(-142.24);
-            RevDeBugAPI.Snapshot.RecordSnapshot("abs");
+            Utilities.RevDeBugCaller.RecordSnapshot("abs");
             return test;
         }
         [Route("round")]
@@ -46,7 +46,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Round(-142.24);
-            RevDeBugAPI.Snapshot.RecordSnapshot("round");
+            Utilities.RevDeBugCaller.RecordSnapshot("round");
             return test;
         }
         [Route("asin_nan")]
@@ -54,7 +54,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Asin(2.45);
-            RevDeBugAPI.Snapshot.RecordSnapshot("asin_nan");
+            Utilities.RevDeBugCaller.RecordSnapshot("asin_nan");
             return test;
         }
         [Route("asin")]
@@ -62,7 +62,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Asin(0.45);
-            RevDeBugAPI.Snapshot.RecordSnapshot("asin");
+            Utilities.RevDeBugCaller.RecordSnapshot("asin");
             return test;
         }
         [Route("log")]
@@ -70,7 +70,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Log(10);
-            RevDeBugAPI.Snapshot.RecordSnapshot("log");
+            Utilities.RevDeBugCaller.RecordSnapshot("log");
             return test;
         }
         [Route("sin")]
@@ -78,7 +78,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Sin(10);
-            RevDeBugAPI.Snapshot.RecordSnapshot("sin");
+            Utilities.RevDeBugCaller.RecordSnapshot("sin");
             return test;
         }
         [Route("cos")]
@@ -86,7 +86,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Cos(10);
-            RevDeBugAPI.Snapshot.RecordSnapshot("cos");
+            Utilities.RevDeBugCaller.RecordSnapshot("cos");
             return test;
         }
         [Route("tan")]
@@ -94,7 +94,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Tan(10);
-            RevDeBugAPI.Snapshot.RecordSnapshot("tan");
+            Utilities.RevDeBugCaller.RecordSnapshot("tan");
             return test;
         }
         [Route("ceiling")]
@@ -102,7 +102,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Ceiling(10.42113);
-            RevDeBugAPI.Snapshot.RecordSnapshot("ceiling");
+            Utilities.RevDeBugCaller.RecordSnapshot("ceiling");
             return test;
         }
         [Route("exp")]
@@ -110,7 +110,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Exp(12);
-            RevDeBugAPI.Snapshot.RecordSnapshot("exp");
+            Utilities.RevDeBugCaller.RecordSnapshot("exp");
             return test;
         }
         [Route("pow")]
@@ -118,7 +118,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Pow(12,12);
-            RevDeBugAPI.Snapshot.RecordSnapshot("pow");
+            Utilities.RevDeBugCaller.RecordSnapshot("pow");
             return test;
         }
         [Route("copy_sign")]
@@ -126,7 +126,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.CopySign(12, -4);
-            RevDeBugAPI.Snapshot.RecordSnapshot("copy_sign");
+            Utilities.RevDeBugCaller.RecordSnapshot("copy_sign");
             return test;
         }
         [Route("exp_to_string")]
@@ -134,7 +134,7 @@ namespace dotNetEndpoint.Controllers
         {
             string test = "";
             test += Math.Exp(12).ToString();
-            RevDeBugAPI.Snapshot.RecordSnapshot("exp_to_string");
+            Utilities.RevDeBugCaller.RecordSnapshot("exp_to_string");
             return test;
         }
 

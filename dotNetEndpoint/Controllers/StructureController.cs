@@ -16,7 +16,7 @@ namespace dotNetEndpoint.Controllers
             Coordinate coordinate1 = new Coordinate(5,12);
             string test = coordinate1+"";
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_coordinate");
+            Utilities.RevDeBugCaller.RecordSnapshot("get_coordinate");
             return test;
         }
 
@@ -30,7 +30,7 @@ namespace dotNetEndpoint.Controllers
             test += coordinate1.SetOriginX();
             test += coordinate1.SetOriginY();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("set_origin");
+            Utilities.RevDeBugCaller.RecordSnapshot("set_origin");
             return test;
         }
 
@@ -44,7 +44,7 @@ namespace dotNetEndpoint.Controllers
             test += coordinate1.SetOriginX();
             test += coordinate1.SetOriginY();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_origin");
+            Utilities.RevDeBugCaller.RecordSnapshot("get_origin");
             return test;
         }
         [Route("conversion_request")]
@@ -64,7 +64,7 @@ namespace dotNetEndpoint.Controllers
             test += conversion.Rate.ToString();
             test += conversion.Values.ToString();
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("conversion_request");
+            Utilities.RevDeBugCaller.RecordSnapshot("conversion_request");
             return test;
         }
 
@@ -93,7 +93,7 @@ namespace dotNetEndpoint.Controllers
             test += customRef.IsValid + " ";
             test += customRef.Inputs.ToString() + " ";
             test += customRef.Outputs.ToString()+ " ";
-            RevDeBugAPI.Snapshot.RecordSnapshot("custom_ref");
+            Utilities.RevDeBugCaller.RecordSnapshot("custom_ref");
             return test;
         }
     }
