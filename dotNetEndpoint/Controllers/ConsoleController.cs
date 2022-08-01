@@ -1,4 +1,5 @@
-﻿using dotNetEndpointApp.Models;
+﻿using dotNetEndpoint.Models;
+using dotNetEndpointApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,30 @@ namespace dotNetEndpoint.Controllers
             test = "justRegularString" + a1 + a2;
             Console.WriteLine(test);
             RevDeBugAPI.Snapshot.RecordSnapshot("double_quotes");
+            return test;
+        }
+        [Route("interpolated_string_handler")]
+        public void InterpolatedStringHandler()
+        {
+            var logger = new Logger() { EnabledLevel = LogLevel.Warning };
+            var time = DateTime.Now;
+
+            logger.LogMessage(LogLevel.Error, $"Error Level. CurrentTime: {time}. This is an error. It will be printed.");
+            logger.LogMessage(LogLevel.Trace, $"Trace Level. CurrentTime: {time}. This won't be printed.");
+            logger.LogMessage(LogLevel.Warning, "Warning Level. This warning is a string, not an interpolated string expression.");
+            RevDeBugAPI.Snapshot.RecordSnapshot("interpolated_string_handler");
+        }
+        [Route("const_interpolated_string")]
+        public string ConstInretpolatedString()
+        {
+            string test = "";
+            test += InterpolatedStrings.scheme + " ";
+            test += InterpolatedStrings.HomeUri + " ";
+            test += InterpolatedStrings.LoginUri + " ";
+            test += InterpolatedStrings.dev + " ";
+            test += InterpolatedStrings.LoginUriDev + " ";
+            test += InterpolatedStrings.HomeUriDev;
+            RevDeBugAPI.Snapshot.RecordSnapshot("const_interpolated_string");
             return test;
         }
     }
