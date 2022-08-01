@@ -81,7 +81,7 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("interpolated_string_handler");
         }
         [Route("const_interpolated_string")]
-        public string ConstInretpolatedString()
+        public string ConstInterpolatedString()
         {
             string test = "";
             test += InterpolatedStrings.scheme + " ";
