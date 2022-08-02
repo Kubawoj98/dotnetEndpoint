@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace dotNetEndpoint.Controllers;
 
 [Route("[controller]")]
-public class MathController : Controller 
+public class MathController : Controller
 {
     [Route("max")]
     public string Max()
     {
         string test = "";
-         test+= Math.Max(10, 150);
+        test += Math.Max(10, 150);
         RevDeBugAPI.Snapshot.RecordSnapshot("max");
         return test;
     }
@@ -117,7 +114,7 @@ public class MathController : Controller
     public string Pow()
     {
         string test = "";
-        test += Math.Pow(12,12);
+        test += Math.Pow(12, 12);
         RevDeBugAPI.Snapshot.RecordSnapshot("pow");
         return test;
     }

@@ -4,320 +4,317 @@ using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace dotNetEndpoint.Controllers
+namespace dotNetEndpoint.Controllers;
+
+[Route("[controller]")]
+public class NUnitController : Controller
 {
-    [Route("[controller]")]
-    public class NUnitController : Controller
+    [Route("assert_equal")]
+    public string AssertEqual()
     {
-        [Route("assert_equal")]
-        public string AssertEqual()
+        string test = "";
+        int a = 5, b = 4;
+        b = 5;
+        Assert.AreEqual(a, b);
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_equal");
+        return test;
+    }
+    [Route("assert_equal_exception")]
+    public string AssertEqualException()
+    {
+        string test = "";
+        int a = 5, b = 4;
+        try
         {
-            string test = "";
-            int a = 5, b = 4;
-            b = 5;
             Assert.AreEqual(a, b);
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_equal");
-            return test;
+            test += "True";
         }
-        [Route("assert_equal_exception")]
-        public string AssertEqualException()
+        catch (Exception e)
         {
-            string test = "";
-            int a = 5, b = 4;
-            try
-            {
-                Assert.AreEqual(a, b);
-                test += "True";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_equal_exception");
-            return test;
+            test += e;
         }
-        [Route("assert_false")]
-        public string AssertFalse()
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_equal_exception");
+        return test;
+    }
+    [Route("assert_false")]
+    public string AssertFalse()
+    {
+        string test = "";
+        int a = 5, b = 4;
+        try
         {
-            string test = "";
-            int a = 5, b = 4;
-            try
-            {
-                Assert.False(a == 0, "a jest równe 0");
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_false");
-            return test;
+            Assert.False(a == 0, "a jest równe 0");
         }
-        [Route("assert_true")]
-        public string AssertTrue()
+        catch (Exception e)
         {
-            string test = "";
-            int a = 0, b = 4;
-            try
-            {
-                Assert.True(a == 0, "a jest równe 0");
-                test += "a jest równe 0";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_true");
-            return test;
+            test += e;
         }
-        [Route("assert_null_exception")]
-
-        public string AssertNullException()
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_false");
+        return test;
+    }
+    [Route("assert_true")]
+    public string AssertTrue()
+    {
+        string test = "";
+        int a = 0, b = 4;
+        try
         {
-            string test = "";
-            int a = 0, b = 4;
-            try
-            {
-                Assert.Null(a, "a nie jest nullem");
-                test += "true";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_null_exception");
-            return test;
+            Assert.True(a == 0, "a jest równe 0");
+            test += "a jest równe 0";
         }
-        [Route("assert_null")]
-
-        public string AssertNull()
+        catch (Exception e)
         {
-            string test = "";
-            string a = null;
-            try
-            {
-                Assert.Null(a, "a nie jest nullem");
-                test += "true";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_null");
-            return test;
+            test += e;
         }
-        [Route("assert_arrays")]
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_true");
+        return test;
+    }
+    [Route("assert_null_exception")]
 
-        public string AssertArrays()
+    public string AssertNullException()
+    {
+        string test = "";
+        int a = 0, b = 4;
+        try
         {
-            string test = "";
-            var thing = new MyOtherClass();
-
-            var expected = new List<MyOtherClass>();
-            expected.Add(thing);
-
-            var actual = new List<MyOtherClass>();
-            actual.Add(thing);
-
-            try
-            {
-                CollectionAssert.AreEqual(expected, actual);
-                test += "true";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays");
-            return test;
+            Assert.Null(a, "a nie jest nullem");
+            test += "true";
         }
-        [Route("assert_arrays_exception")]
-
-        public string AssertArraysException()
+        catch (Exception e)
         {
-            string test = "";
-            var thing = new MyOtherClass();
-            var nunitThing = new MyNUnitClass();
-
-            var expected = new List<MyOtherClass>();
-            expected.Add(thing);
-
-            var actual = new List<MyNUnitClass>();
-            actual.Add(nunitThing);
-
-            try
-            {
-                CollectionAssert.AreEqual(expected, actual);
-                test += "true";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays_exception");
-            return test;
+            test += e;
         }
-        [Route("person_comparer")]
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_null_exception");
+        return test;
+    }
+    [Route("assert_null")]
 
-        public string PersonComparer()
+    public string AssertNull()
+    {
+        string test = "";
+        string a = null;
+        try
         {
-            string test = "";
-            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            Person p2 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
-
-            Assert.AreSame(p1.FirstName, p2.FirstName);
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
-            return test;
-
-
+            Assert.Null(a, "a nie jest nullem");
+            test += "true";
         }
-        [Route("person_comparer_exception")]
-
-        public string PersonComparerException()
+        catch (Exception e)
         {
-            string test = "";
-            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            Person p2 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
-
-            try
-            {
-                Assert.AreSame(p1, p2);
-            }
-            catch(Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_exception");
-            return test;
+            test += e;
         }
-        [Route("person_comparer_inheritance")]
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_null");
+        return test;
+    }
+    [Route("assert_arrays")]
 
-        public string PersonCompareInheritance()
+    public string AssertArrays()
+    {
+        string test = "";
+        var thing = new MyOtherClass();
+
+        var expected = new List<MyOtherClass>();
+        expected.Add(thing);
+
+        var actual = new List<MyOtherClass>();
+        actual.Add(thing);
+
+        try
         {
-            string test = "";
-            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            Employee p2 = new Employee { FirstName = "Tom", LastName = "Hamilton" };
-            Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
-
-            try
-            {
-                Assert.AreSame(p1, p2);
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_inheritance");
-            return test;
+            CollectionAssert.AreEqual(expected, actual);
+            test += "true";
         }
-        [Route("inconclusive")]
-
-        public string Inconclusive()
+        catch (Exception e)
         {
-            string test = "";
-
-            try
-            {
-                Assert.Inconclusive();
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive");
-            return test;
+            test += e;
         }
-        [Route("inconclusive_with_message")]
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays");
+        return test;
+    }
+    [Route("assert_arrays_exception")]
 
-        public string InconclusiveWithMessage()
+    public string AssertArraysException()
+    {
+        string test = "";
+        var thing = new MyOtherClass();
+        var nunitThing = new MyNUnitClass();
+
+        var expected = new List<MyOtherClass>();
+        expected.Add(thing);
+
+        var actual = new List<MyNUnitClass>();
+        actual.Add(nunitThing);
+
+        try
         {
-            string test = "";
-
-            try
-            {
-                Assert.Inconclusive("This is some nice inconclusive message");
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive_with_message");
-            return test;
+            CollectionAssert.AreEqual(expected, actual);
+            test += "true";
         }
-        [Route("ignore")]
-
-        public string Ignore()
+        catch (Exception e)
         {
-            string test = "";
-
-            try
-            {
-                Assert.Ignore();
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("ignore");
-            return test;
+            test += e;
         }
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_arrays_exception");
+        return test;
+    }
+    [Route("person_comparer")]
 
-        [Route("ignore_with_message")]
-        public string IgnoreWithMessage()
+    public string PersonComparer()
+    {
+        string test = "";
+        Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        Person p2 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
+
+        Assert.AreSame(p1.FirstName, p2.FirstName);
+        RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer");
+        return test;
+
+
+    }
+    [Route("person_comparer_exception")]
+
+    public string PersonComparerException()
+    {
+        string test = "";
+        Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        Person p2 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
+
+        try
         {
-            string test = "";
-
-            try
-            {
-                Assert.Ignore("This is some nice ignore message");
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("ignore_with_message");
-            return test;
-
+            Assert.AreSame(p1, p2);
         }
-        [Route("is_instance_of_type")]
-
-        public string IsInstanceOfType()
+        catch (Exception e)
         {
-            string test = "";
-            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            try
-            {
-                Assert.IsInstanceOf<Person>(p1);
-                test += "p1 is type Person";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("is_instance_of_type");
-            return test;
+            test += e;
         }
-        [Route("assert_is_instance_of_type")]
+        RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_exception");
+        return test;
+    }
+    [Route("person_comparer_inheritance")]
 
-        public string AssertIsInstanceOfType()
+    public string PersonCompareInheritance()
+    {
+        string test = "";
+        Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        Employee p2 = new Employee { FirstName = "Tom", LastName = "Hamilton" };
+        Person p3 = new Person { FirstName = "Lewis", LastName = "Hamilton" };
+
+        try
         {
-            string test = "";
-            Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
-            try
-            {
-                Assert.That(p1, Is.InstanceOf<Person>());
-                test += "p1 is type Person";
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("assert_is_instance_of_type");
-            return test;
+            Assert.AreSame(p1, p2);
         }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("person_comparer_inheritance");
+        return test;
+    }
+    [Route("inconclusive")]
+
+    public string Inconclusive()
+    {
+        string test = "";
+
+        try
+        {
+            Assert.Inconclusive();
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive");
+        return test;
+    }
+    [Route("inconclusive_with_message")]
+
+    public string InconclusiveWithMessage()
+    {
+        string test = "";
+
+        try
+        {
+            Assert.Inconclusive("This is some nice inconclusive message");
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("inconclusive_with_message");
+        return test;
+    }
+    [Route("ignore")]
+
+    public string Ignore()
+    {
+        string test = "";
+
+        try
+        {
+            Assert.Ignore();
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("ignore");
+        return test;
+    }
+
+    [Route("ignore_with_message")]
+    public string IgnoreWithMessage()
+    {
+        string test = "";
+
+        try
+        {
+            Assert.Ignore("This is some nice ignore message");
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("ignore_with_message");
+        return test;
+
+    }
+    [Route("is_instance_of_type")]
+
+    public string IsInstanceOfType()
+    {
+        string test = "";
+        Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        try
+        {
+            Assert.IsInstanceOf<Person>(p1);
+            test += "p1 is type Person";
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("is_instance_of_type");
+        return test;
+    }
+    [Route("assert_is_instance_of_type")]
+
+    public string AssertIsInstanceOfType()
+    {
+        string test = "";
+        Person p1 = new Person { FirstName = "Tom", LastName = "Hamilton" };
+        try
+        {
+            Assert.That(p1, Is.InstanceOf<Person>());
+            test += "p1 is type Person";
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("assert_is_instance_of_type");
+        return test;
     }
 }

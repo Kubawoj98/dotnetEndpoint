@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 
 namespace dotNetEndpoint.Controllers
 {
-    public class CallerExpressionAttribute 
+    public class CallerExpressionAttribute
     {
         public static void LogExpression<T>(T value, [CallerArgumentExpression("value")] string expression = null)
         {
