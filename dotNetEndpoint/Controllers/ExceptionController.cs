@@ -5,51 +5,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace dotNetEndpoint.Controllers
-{
-    [Route("[controller]")]
-    public class ExceptionController : Controller
-    {
-        [Route("try_catch")]
-        public string TryCatch()
-        {
-            string test = " ";
-            int zero = 0;
-            try
-            {
-                zero = 100 / zero;
-            }
-            catch(ArithmeticException e)
-            {
-                test = "You can't divide by zero! ";
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
-            return test;
-        }
-        
-        [Route("try_catch_appropriate_exception")]
-        public string TryCatchAppropriateException()
-        {
-            string test = " ";
-            int zero = 0;
-            try
-            {
-                zero = 100 / zero;
-            }
-            catch (NullReferenceException e)
-            {
-                test = "Null reference ";
-            }
-            catch (ArithmeticException e)
-            {
-                test = "You can't divide by zero! ";
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_appropriate_exception");
-            return test;
-        }
+namespace dotNetEndpoint.Controllers;
 
-        [Route("new_exception_class")]
-        public string newExceptionsClass()
+[Route("[controller]")]
+public class ExceptionController : Controller
+{
+    [Route("try_catch")]
+    public string TryCatch()
+    {
+        string test = " ";
+        int zero = 0;
+        try
+        {
+            zero = 100 / zero;
+        }
+        catch(ArithmeticException e)
+        {
+            test = "You can't divide by zero! ";
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
+        return test;
+    }
+    
+    [Route("try_catch_appropriate_exception")]
+    public string TryCatchAppropriateException()
+    {
+        string test = " ";
+        int zero = 0;
+        try
         {
             string test = " ";
             try
@@ -64,64 +47,89 @@ namespace dotNetEndpoint.Controllers
             RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
             return test;
         }
-
-         [Route("string_index_out_of_bound")]
-        public string StringIndexOutOfBound()
+        catch (NullReferenceException e)
         {
-            string test = " ";
-            try
-            {
-                String a = "Payday2"; // length is 7
-                char c = a[9]; // accessing 9 th element
-                Console.WriteLine(c);
-            }
-            catch
-            {
-                test = "You ask for string out of bound";
-            }
+            test = "Null reference ";
+        }
+        catch (ArithmeticException e)
+        {
+            test = "You can't divide by zero! ";
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_appropriate_exception");
+        return test;
+    }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("string_index_out_of_bound");
-            return test;
+    [Route("new_exception_class")]
+    public string newExceptionsClass()
+    {
+        string test = " ";
+        int zero = 0;
+        try
+        {
+            throw new TestException("Error: ");
+        }
+        catch(TestException e)
+        {
+            test += e.Message;
         }
 
-        [Route("number_format")]
-        public string numberFormat()
+        RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
+        return test;
+    }
+
+     [Route("string_index_out_of_bound")]
+    public string StringIndexOutOfBound()
+    {
+        string test = " ";
+        try
         {
-            string test = " ";
-            try
-            {
-                // "Kebab" is not a number
-                int num = Int32.Parse("Kebab");
-
-                Console.WriteLine(num);
-            }
-            catch
-            {
-                test = "Number format exception";
-            }
-
-            RevDeBugAPI.Snapshot.RecordSnapshot("number_format");
-            return test;
+            String a = "Payday2"; // length is 7
+            char c = a[9]; // accessing 9 th element
+            Console.WriteLine(c);
+        }
+        catch
+        {
+            test = "You ask for string out of bound";
         }
 
-        [Route("array_index_out_of_bound")]
-        public string arrayIndexOutOfBound()
+        RevDeBugAPI.Snapshot.RecordSnapshot("string_index_out_of_bound");
+        return test;
+    }
+
+    [Route("number_format")]
+    public string numberFormat()
+    {
+        string test = " ";
+        try
         {
-            string test = " ";
-            try
-            {
-                // "Kebab" is not a number
-                int num = Int32.Parse("Kebab");
+            // "Kebab" is not a number
+            int num = Int32.Parse("Kebab");
 
-                Console.WriteLine(num);
-            }
-            catch
-            {
-                test = "You asked for  out of bound array index who";
-            }
+            Console.WriteLine(num);
+        }
+        catch
+        {
+            test = "Number format exception";
+        }
 
-            RevDeBugAPI.Snapshot.RecordSnapshot("array_index_out_of_bound");
-            return test;
+        RevDeBugAPI.Snapshot.RecordSnapshot("number_format");
+        return test;
+    }
+
+    [Route("array_index_out_of_bound")]
+    public string arrayIndexOutOfBound()
+    {
+        string test = " ";
+        try
+        {
+            // "Kebab" is not a number
+            int num = Int32.Parse("Kebab");
+
+            Console.WriteLine(num);
+        }
+        catch
+        {
+            test = "You asked for  out of bound array index who";
         }
 
         [Route("try_catch_finally")]
