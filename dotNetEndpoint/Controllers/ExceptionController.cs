@@ -34,7 +34,18 @@ public class ExceptionController : Controller
         int zero = 0;
         try
         {
-            zero = 100 / zero;
+            string test = " ";
+            try
+            {
+                throw new TestException("Error: ");
+            }
+            catch(TestException e)
+            {
+                test += e.Message;
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
+            return test;
         }
         catch (NullReferenceException e)
         {
@@ -121,7 +132,84 @@ public class ExceptionController : Controller
             test = "You asked for  out of bound array index who";
         }
 
-        RevDeBugAPI.Snapshot.RecordSnapshot("array_index_out_of_bound");
-        return test;
+        [Route("try_catch_finally")]
+        public string tryCatchFinally()
+        {
+            string test = " ";
+            int zero = 0;
+            try
+            {
+                zero = 100 / zero;
+            }
+            catch (ArithmeticException e)
+            {
+                test = "Info from catch";
+                 
+                if(test.Length >= 0)
+                {
+                    test += "-> You asked for out of bound array index who";
+                }
+            }
+            finally
+            {
+                test = "Info from finally -> You asked for out of bound array index who";
+                var test3 = test;
+                if(test3.Length >= 0)
+                {
+
+                }
+            }
+            
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_finally");
+            return test;
+        }
+
+        [Route("try_in_try")]
+        public string tryInTry()
+        {
+            string test = " ";
+            int zero = 0;
+            try
+            {
+                try
+                {
+                    zero = 100 / zero;
+                }
+                catch
+                {
+                    test = "Inner catch -> You can't divide by zero! ";
+                }
+            }
+            catch
+            {
+                test = "Outer catch -> You can't divide by zero! ";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_in_try");
+            return test;
+        }
+
+        [Route("try_catch_if")]
+        public string tryCatchIf()
+        {
+            string test = " ";
+            int zero = 0;
+            bool passed = true;
+            try
+            {
+                zero = 100 / zero;
+            }
+            catch
+            {
+                passed = false;
+            }
+            if (passed==false)
+            {
+                test = "Info from if -> You can't divide by zero! ";
+            }
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_if");
+            return test;
+        }
     }
 }
