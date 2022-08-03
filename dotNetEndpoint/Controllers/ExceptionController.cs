@@ -34,7 +34,6 @@ public class ExceptionController : Controller
         int zero = 0;
         try
         {
-            string test = " ";
             try
             {
                 throw new TestException("Error: ");
@@ -131,6 +130,7 @@ public class ExceptionController : Controller
         {
             test = "You asked for  out of bound array index who";
         }
+        return test;
     }
 
     [Route("try_catch_finally")]
