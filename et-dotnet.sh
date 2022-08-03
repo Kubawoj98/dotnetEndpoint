@@ -19,7 +19,7 @@ docker_build() {
 }
 
 docker_start() {
-    sudo docker run -d -p 6015:5000 --name et-dotnet et-dotnet:latest
+    sudo docker run -d -p 6015:80 --name et-dotnet et-dotnet:latest
 }
 
 docker_reload() {
