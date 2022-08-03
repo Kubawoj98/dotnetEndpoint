@@ -44,19 +44,6 @@ namespace dotNetEndpoint.Controllers
             return test;
         }
 
-        [Route("err_loop_inf")]
-        public string err_loop()
-        {
-            string test = "";
-            int i = 0;
-            while (true)
-            {
-                Console.WriteLine(i);
-                i++;
-            }
-            return test;
-        }
-
         [Route("err_loop_for_1000")]
         public string err_loop_for_1000()
         {

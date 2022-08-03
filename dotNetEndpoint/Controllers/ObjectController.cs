@@ -1,4 +1,5 @@
-﻿using dotNetEndpointApp.Models;
+﻿using dotNetEndpoint.Models;
+using dotNetEndpointApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -101,6 +102,32 @@ namespace dotNetEndpoint.Controllers
             test += person.GetUserData();
 
             RevDeBugAPI.Snapshot.RecordSnapshot("methods_inside_method");
+            return test;
+        }
+
+        [Route("refer_to_model")]
+        public string referToModel()
+        {
+            string test = "";
+
+            // Reference to person model
+            PersonModel person = new();
+
+            if (person is { FirstName: { Length: > 3 } })
+                Console.WriteLine("Thats a long name");
+            else
+            {
+                Console.WriteLine("name is not that long");
+            }
+            RevDeBugAPI.Snapshot.RecordSnapshot("refer_to_model");
+            return test;
+        }
+        [Route("log_expression")]
+        public string logExpression()
+        {
+            string test = person.FirstName;
+            CallerExpressionAttribute.LogExpression(person.FirstName);
+            RevDeBugAPI.Snapshot.RecordSnapshot("log_expression");
             return test;
         }
     }

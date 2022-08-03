@@ -136,7 +136,17 @@ namespace dotNetEndpoint.Controllers
             test += Math.Exp(12).ToString();
             RevDeBugAPI.Snapshot.RecordSnapshot("exp_to_string");
             return test;
-        }
+        
 
+        [Route("assign_and_declare_in_same_deconstruction")]
+        public string assignAndDeclareInSameDeconstruction()
+        {
+            string test = "";
+            int x = 0;
+            (x, int y) = (2, 3);
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("assign_and_declare_in_same_deconstruction");
+            return test;
+        }
     }
 }
