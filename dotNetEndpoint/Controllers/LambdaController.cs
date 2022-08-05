@@ -103,7 +103,7 @@ public class LambdaController : Controller
         bool result = isEven(5);
         test += result;
         Console.WriteLine(string.Join(" ", result));
-        RevDeBugAPI.Snapshot.RecordSnapshot("func_int_bool_implicity");
+        RevDeBugAPI.Snapshot.RecordSnapshot("func_int_bool_pure");
         return test;
     }
 }
