@@ -83,4 +83,13 @@ public class ErrorController : Controller
         RevDeBugAPI.Snapshot.RecordSnapshot("err_loop_for_1000_snap");
         return test;
     }
+    [Route("divide_by_zero")]
+    public string error_divide_by_zero()
+    {
+        string test = "";
+        int divA = new Random().Next(50);
+        int divB = 0;
+        int divC = divA / divB;
+        return test;
+    }
 }
