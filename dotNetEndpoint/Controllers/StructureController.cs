@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using dotNetEndpoint.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace dotNetEndpoint.Controllers
 {
@@ -13,8 +11,8 @@ namespace dotNetEndpoint.Controllers
         [Route("get_coordinate")]
         public string GetCoordinate()
         {
-            Coordinate coordinate1 = new Coordinate(5,12);
-            string test = coordinate1+"";
+            Coordinate coordinate1 = new Coordinate(5, 12);
+            string test = coordinate1 + "";
 
             RevDeBugAPI.Snapshot.RecordSnapshot("get_coordinate");
             return test;
@@ -92,10 +90,71 @@ namespace dotNetEndpoint.Controllers
             CustomRef customRef = new CustomRef(true, asInts, asInts2);
             test += customRef.IsValid + " ";
             test += customRef.Inputs.ToString() + " ";
-            test += customRef.Outputs.ToString()+ " ";
+            test += customRef.Outputs.ToString() + " ";
             RevDeBugAPI.Snapshot.RecordSnapshot("custom_ref");
             return test;
         }
+        [Route("structure_improvement")]
+        public string structImprovement()
+        {
+            string test = "improvement of structs added in c# 10";
+            // Struct improvement
+            var m1 = new Measurement();
+            Console.WriteLine(m1);  // output: NaN (Undefined)
+
+            var m2 = default(Measurement);
+            Console.WriteLine(m2);  // output: 0 ()
+
+            var ms = new Measurement[2];
+            Console.WriteLine(string.Join(", ", ms));  // output: 0 (), 0 ()
+
+            RevDeBugAPI.Snapshot.RecordSnapshot("structure_improvement");
+            return test;
+        }
+        [Route("record_struct")]
+        public void recordStruct()
+        {
+            // record structs
+            foreach (var item in data)
+                Console.WriteLine(item);
+
+            var heatingDegreeDays = new HeatingDegreeDays(65, data);
+            Console.WriteLine(heatingDegreeDays);
+
+            var coolingDegreeDays = new CoolingDegreeDays(65, data);
+            Console.WriteLine(coolingDegreeDays);
+            Console.WriteLine($"|{"Left",-7}|{"Right",7}|");
+
+            const int FieldWidthRightAligned = 20;
+            Console.WriteLine($"{Math.PI,FieldWidthRightAligned} - default formatting of the pi number");
+            Console.WriteLine($"{Math.PI,FieldWidthRightAligned:F3} - display only three decimal digits of the pi number");
+            RevDeBugAPI.Snapshot.RecordSnapshot("record_struct");
+        }
+        private static DailyTemperature[] data = new DailyTemperature[]
+    {
+new DailyTemperature(HighTemp: 57, LowTemp: 30),
+new DailyTemperature(60, 35),
+new DailyTemperature(63, 33),
+new DailyTemperature(68, 29),
+new DailyTemperature(72, 47),
+new DailyTemperature(75, 55),
+new DailyTemperature(77, 55),
+new DailyTemperature(72, 58),
+new DailyTemperature(70, 47),
+new DailyTemperature(77, 59),
+new DailyTemperature(85, 65),
+new DailyTemperature(87, 65),
+new DailyTemperature(85, 72),
+new DailyTemperature(83, 68),
+new DailyTemperature(77, 65),
+new DailyTemperature(72, 58),
+new DailyTemperature(77, 55),
+new DailyTemperature(76, 53),
+new DailyTemperature(80, 60),
+new DailyTemperature(85, 66)
+    };
+
+
     }
     struct Coordinate
     {
@@ -126,11 +185,11 @@ namespace dotNetEndpoint.Controllers
         public Span<int> Inputs;
         public Span<int> Outputs;
 
-        public CustomRef(bool isValid,Span<int>  Inputs, Span<int> Outputs)
+        public CustomRef(bool isValid, Span<int> Inputs, Span<int> Outputs)
         {
-            IsValid= isValid;
-            this.Inputs= Inputs;
-            this.Outputs= Outputs; 
+            IsValid = isValid;
+            this.Inputs = Inputs;
+            this.Outputs = Outputs;
         }
     }
     public readonly ref struct ConversionRequest
@@ -144,5 +203,24 @@ namespace dotNetEndpoint.Controllers
 
         public Span<int> Rate { get; }
         public Span<int> Values { get; }
+    }
+    public readonly struct Measurement
+    {
+        public Measurement()
+        {
+            Value = double.NaN;
+            Description = "Undefined";
+        }
+
+        public Measurement(double value, string description)
+        {
+            Value = value;
+            Description = description;
+        }
+
+        public double Value { get; init; }
+        public string Description { get; init; }
+
+        public override string ToString() => $"{Value} ({Description})";
     }
 }

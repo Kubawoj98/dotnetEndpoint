@@ -2,194 +2,192 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace dotNetEndpoint.Controllers
+namespace dotNetEndpoint.Controllers;
+
+[Route("[controller]")]
+public class DictionaryController : Controller
 {
-    [Route("[controller]")]
-    public class DictionaryController : Controller
+    [Route("get_value_method")]
+    public string GetValueMethod()
     {
-        [Route("get_value_method")]
-        public string GetValueMethod()
+        string test = "";
+        Dictionary<string, string> capitalCities = new Dictionary<string, string>();
+        capitalCities.Add("England", "London");
+        capitalCities.Add("Germany", "Berlin");
+        capitalCities.Add("Norway", "Oslo");
+        capitalCities.Add("USA", "Washington DC");
+        capitalCities.TryGetValue("Norway", out test);
+        RevDeBugAPI.Snapshot.RecordSnapshot("get_value_method");
+        return test;
+    }
+    [Route("get_value_assign")]
+    public string GetValueAssign()
+    {
+        string test = "";
+        Dictionary<string, string> capitalCities = new Dictionary<string, string>();
+        capitalCities.Add("England", "London");
+        capitalCities.Add("Germany", "Berlin");
+        capitalCities.Add("Norway", "Oslo");
+        capitalCities.Add("USA", "Washington DC");
+        test += capitalCities["England"];
+        RevDeBugAPI.Snapshot.RecordSnapshot("get_value_assign");
+        return test;
+    }
+    [Route("update_value")]
+    public string UpdateValue()
+    {
+        string test = "";
+        Dictionary<string, string> cities = new Dictionary<string, string>();
+        cities.Add("England", "London");
+        cities.Add("Germany", "Berlin");
+        cities["England"] = "Liverpool, Bristol";
+        test += cities["England"];
+        RevDeBugAPI.Snapshot.RecordSnapshot("update_value");
+        return test;
+    }
+    [Route("clear_values")]
+    public string ClearValues()
+    {
+        string test = "";
+        Dictionary<string, string> cities = new Dictionary<string, string>();
+        cities.Add("England", "London");
+        cities.Add("Germany", "Berlin");
+        cities["England"] = "Liverpool, Bristol";
+        cities.Clear();
+        try
         {
-            string test = "";
-            Dictionary<string, string> capitalCities = new Dictionary<string, string>();
-            capitalCities.Add("England","London");
-            capitalCities.Add("Germany", "Berlin");
-            capitalCities.Add("Norway", "Oslo");
-            capitalCities.Add("USA", "Washington DC");
-            capitalCities.TryGetValue("Norway", out test);
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_value_method");
-            return test;
-        }
-        [Route("get_value_assign")]
-        public string GetValueAssign()
-        {
-            string test = "";
-            Dictionary<string, string> capitalCities = new Dictionary<string, string>();
-            capitalCities.Add("England", "London");
-            capitalCities.Add("Germany", "Berlin");
-            capitalCities.Add("Norway", "Oslo");
-            capitalCities.Add("USA", "Washington DC");
-            test += capitalCities["England"];
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_value_assign");
-            return test;
-        }
-        [Route("update_value")]
-        public string UpdateValue()
-        {
-            string test = "";
-            Dictionary<string, string> cities = new Dictionary<string, string>();
-            cities.Add("England", "London");
-            cities.Add("Germany", "Berlin");
-            cities["England"]="Liverpool, Bristol";
             test += cities["England"];
-            RevDeBugAPI.Snapshot.RecordSnapshot("update_value");
-            return test;
         }
-        [Route("clear_values")]
-        public string ClearValues()
+        catch (Exception e)
         {
-            string test = "";
-            Dictionary<string, string> cities = new Dictionary<string, string>();
-            cities.Add("England", "London");
-            cities.Add("Germany", "Berlin");
-            cities["England"] = "Liverpool, Bristol";
-            cities.Clear();
-            try
-            {
-                test += cities["England"];
-            }
-            catch(Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("clear_values");
-            return test;
+            test += e;
         }
-        [Route("remove_value")]
-        public string RemoveValue()
+        RevDeBugAPI.Snapshot.RecordSnapshot("clear_values");
+        return test;
+    }
+    [Route("remove_value")]
+    public string RemoveValue()
+    {
+        string test = "";
+        Dictionary<string, string> cities = new Dictionary<string, string>();
+        cities.Add("England", "London");
+        cities.Add("Germany", "Berlin");
+        cities.Add("Norway", "Oslo");
+        cities.Add("Poland", "Warsaw");
+        cities["England"] = "Liverpool, Bristol";
+        cities.Remove("England");
+        try
         {
-            string test = "";
-            Dictionary<string, string> cities = new Dictionary<string, string>();
-            cities.Add("England", "London");
-            cities.Add("Germany", "Berlin");
-            cities.Add("Norway", "Oslo");
-            cities.Add("Poland", "Warsaw");
-            cities["England"] = "Liverpool, Bristol";
-            cities.Remove("England");
-            try
+            for (int i = 0; i < cities.Count; i++)
             {
-                for (int i=0;i<cities.Count;i++) 
-                { 
-                    test += string.Format("Key: {0}, Value: {1} \n", cities.ElementAt(i).Key, cities.ElementAt(i).Value);
-                }
+                test += string.Format("Key: {0}, Value: {1} \n", cities.ElementAt(i).Key, cities.ElementAt(i).Value);
             }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("remove_value");
-            return test;
         }
-        [Route("get_from_value")]
-        public string GetFromValue()
+        catch (Exception e)
         {
-            string test = "";
-            Dictionary<string, string> cities = new Dictionary<string, string>();
-            cities.Add("England", "London");
-            cities.Add("Germany", "Berlin");
-            cities.Add("Norway", "Oslo");
-            cities.Add("Poland", "Warsaw");
-            try
-            {
-                if(cities.ContainsKey("Germany"))
-               test+= cities["Germany"];
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("get_from_value");
-            return test;
+            test += e;
         }
-        [Route("different_types")]
-        public string DifferentTypes()
+        RevDeBugAPI.Snapshot.RecordSnapshot("remove_value");
+        return test;
+    }
+    [Route("get_from_value")]
+    public string GetFromValue()
+    {
+        string test = "";
+        Dictionary<string, string> cities = new Dictionary<string, string>();
+        cities.Add("England", "London");
+        cities.Add("Germany", "Berlin");
+        cities.Add("Norway", "Oslo");
+        cities.Add("Poland", "Warsaw");
+        try
         {
-            string test = "";
-            Dictionary<string, int> person = new Dictionary<string, int>();
-            person.Add("Steven", 32);
-            person.Add("Joe", 30);
-            person.Add("Tom", 16);
-            person.Add("Brad", 24);
-            try
-            {
-                test +="Name: " +person.ElementAt(0).Key + "\nAge: " + person.ElementAt(0).Value;
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("different_types");
-            return test;
+            if (cities.ContainsKey("Germany"))
+                test += cities["Germany"];
         }
-        [Route("different_types_sort_ascending")]
-        public string DifferentTypesSortAscending()
+        catch (Exception e)
         {
-            string test = "Original Dictionary: ";
-            Dictionary<string, int> person = new Dictionary<string, int>();
-            person.Add("Steven", 32);
-            person.Add("Joe", 30);
-            person.Add("Tom", 16);
-            person.Add("Brad", 24);
-            for (int i = 0; i < person.Count; i++)
-            {
-                test += "Name: " + person.ElementAt(i).Key + "\nAge: " + person.ElementAt(i).Value + "\n";
-            }
-            test += "\nSorted Dictionary: \n";
-            try
-            {
-                var sortedDict = from entry in person orderby entry.Value ascending select entry;
-                for (int i = 0; i < 4; i++)
-                {
-                    test += "Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
-                }
-            }
-            catch (Exception e)
-            {
-                test += e;
-            }
-            RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending");
-            return test;
+            test += e;
         }
-            [Route("different_types_sort_descending")]
-            public string DifferentTypesSortDescending()
+        RevDeBugAPI.Snapshot.RecordSnapshot("get_from_value");
+        return test;
+    }
+    [Route("different_types")]
+    public string DifferentTypes()
+    {
+        string test = "";
+        Dictionary<string, int> person = new Dictionary<string, int>();
+        person.Add("Steven", 32);
+        person.Add("Joe", 30);
+        person.Add("Tom", 16);
+        person.Add("Brad", 24);
+        try
+        {
+            test += "Name: " + person.ElementAt(0).Key + "\nAge: " + person.ElementAt(0).Value;
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("different_types");
+        return test;
+    }
+    [Route("different_types_sort_ascending")]
+    public string DifferentTypesSortAscending()
+    {
+        string test = "Original Dictionary: ";
+        Dictionary<string, int> person = new Dictionary<string, int>();
+        person.Add("Steven", 32);
+        person.Add("Joe", 30);
+        person.Add("Tom", 16);
+        person.Add("Brad", 24);
+        for (int i = 0; i < person.Count; i++)
+        {
+            test += "Name: " + person.ElementAt(i).Key + "\nAge: " + person.ElementAt(i).Value + "\n";
+        }
+        test += "\nSorted Dictionary: \n";
+        try
+        {
+            var sortedDict = from entry in person orderby entry.Value ascending select entry;
+            for (int i = 0; i < 4; i++)
             {
-                string test = "Original Dictionary: ";
-                Dictionary<string, int> person = new Dictionary<string, int>();
-                person.Add("Steven", 32);
-                person.Add("Joe", 30);
-                person.Add("Tom", 16);
-                person.Add("Brad", 24);
-                for (int i = 0; i < person.Count; i++)
-                {
-                    test += "Name: " + person.ElementAt(i).Key + "\nAge: " + person.ElementAt(i).Value + "\n";
-                }
-                test += "\nSorted Dictionary: \n";
-                try
-                {
-                    var sortedDict = from entry in person orderby entry.Value descending select entry;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        test += "Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
-                    }
-                }
-                catch (Exception e)
-                {
-                    test += e;
-                }
-                RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_descending");
-                return test;
+                test += "Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
             }
         }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_ascending");
+        return test;
+    }
+    [Route("different_types_sort_descending")]
+    public string DifferentTypesSortDescending()
+    {
+        string test = "Original Dictionary: ";
+        Dictionary<string, int> person = new Dictionary<string, int>();
+        person.Add("Steven", 32);
+        person.Add("Joe", 30);
+        person.Add("Tom", 16);
+        person.Add("Brad", 24);
+        for (int i = 0; i < person.Count; i++)
+        {
+            test += "Name: " + person.ElementAt(i).Key + "\nAge: " + person.ElementAt(i).Value + "\n";
+        }
+        test += "\nSorted Dictionary: \n";
+        try
+        {
+            var sortedDict = from entry in person orderby entry.Value descending select entry;
+            for (int i = 0; i < 4; i++)
+            {
+                test += "Name: " + sortedDict.ElementAt(i).Key + "\nAge: " + sortedDict.ElementAt(i).Value + "\n";
+            }
+        }
+        catch (Exception e)
+        {
+            test += e;
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("different_types_sort_descending");
+        return test;
+    }
 }
