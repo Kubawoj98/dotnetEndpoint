@@ -1,9 +1,6 @@
 using dotNetEndpoint.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace dotNetEndpoint.Controllers;
 
@@ -19,14 +16,14 @@ public class ExceptionController : Controller
         {
             zero = 100 / zero;
         }
-        catch(ArithmeticException e)
+        catch (ArithmeticException e)
         {
             test = "You can't divide by zero! ";
         }
         RevDeBugAPI.Snapshot.RecordSnapshot("try_catch");
         return test;
     }
-    
+
     [Route("try_catch_appropriate_exception")]
     public string TryCatchAppropriateException()
     {
@@ -34,17 +31,7 @@ public class ExceptionController : Controller
         int zero = 0;
         try
         {
-            try
-            {
-                throw new TestException("Error: ");
-            }
-            catch(TestException e)
-            {
-                test += e.Message;
-            }
-
-            RevDeBugAPI.Snapshot.RecordSnapshot("new_exception_class");
-            return test;
+            zero = 100 / zero;
         }
         catch (NullReferenceException e)
         {
@@ -67,7 +54,7 @@ public class ExceptionController : Controller
         {
             throw new TestException("Error: ");
         }
-        catch(TestException e)
+        catch (TestException e)
         {
             test += e.Message;
         }
@@ -76,7 +63,7 @@ public class ExceptionController : Controller
         return test;
     }
 
-     [Route("string_index_out_of_bound")]
+    [Route("string_index_out_of_bound")]
     public string StringIndexOutOfBound()
     {
         string test = " ";
@@ -145,8 +132,8 @@ public class ExceptionController : Controller
         catch (ArithmeticException e)
         {
             test = "Info from catch";
-                
-            if(test.Length >= 0)
+
+            if (test.Length >= 0)
             {
                 test += "-> You asked for out of bound array index who";
             }
@@ -155,12 +142,12 @@ public class ExceptionController : Controller
         {
             test = "Info from finally -> You asked for out of bound array index who";
             var test3 = test;
-            if(test3.Length >= 0)
+            if (test3.Length >= 0)
             {
 
             }
         }
-        
+
         RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_finally");
         return test;
     }
@@ -204,7 +191,7 @@ public class ExceptionController : Controller
         {
             passed = false;
         }
-        if (passed==false)
+        if (passed == false)
         {
             test = "Info from if -> You can't divide by zero! ";
         }
