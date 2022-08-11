@@ -117,6 +117,7 @@ public class ExceptionController : Controller
         {
             test = "You asked for  out of bound array index who";
         }
+        RevDeBugAPI.Snapshot.RecordSnapshot("array_index_out_of_bound");
         return test;
     }
 
