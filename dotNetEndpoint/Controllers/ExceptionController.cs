@@ -24,6 +24,24 @@ public class ExceptionController : Controller
         return test;
     }
 
+    [Route("try_catch_ex_list")]
+    public string TryCatchExList()
+    {
+        string test = " ";
+        int zero = 0;
+        try
+        {
+            zero = 100 / zero;
+        }
+        catch (ArithmeticException e)
+        {
+            test = "You can't divide by zero! ";
+        }
+        RevDeBugAPI.Snapshot.RecordSnapshot("try_catch_ex_list");
+        RevDeBugAPI.Snapshot.RecordException(new Exception("try_catch_ex_list"));
+        return test;
+    }
+
     [Route("try_catch_appropriate_exception")]
     public string TryCatchAppropriateException()
     {
