@@ -3,9 +3,9 @@
 namespace dotNetEndpoint.Controllers
 {
     [Route("[controller]")]
-    public class GetSettingsController : Controller
+    public class SettingsController : Controller
     {
-        [Route("version")]
+        [Route("get_version")]
         public string Version()
         {
             using (System.IO.StreamReader r = new System.IO.StreamReader("dotNetEndpoint.deps.json"))
